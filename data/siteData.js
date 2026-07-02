@@ -1,125 +1,699 @@
 export const navItems = [
-  { label: "Клуб", path: "/club" },
-  { label: "Команда", path: "/squad" },
+  { label: "О клубе", path: "/club" },
+  { label: "Состав", path: "/squad" },
   { label: "Матчи", path: "/fixtures" },
-  { label: "Live", path: "/live" },
   { label: "Новости", path: "/news" },
-  { label: "Магазин", path: "/shop" },
-  { label: "Билеты", path: "/tickets" },
-  { label: "Членство", path: "/membership" },
+  { label: "Медиа", path: "/media" },
+  { label: "Партнеры", path: "/partners" },
+  { label: "Контакты", path: "/contact" },
+];
+
+export const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/topteam.kg/",
+    caption: "@topteam.kg",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/playlist?list=PL1McLR5i1MQRosOKJq1Htw8fHx-3l1zzZ",
+    caption: "MFL 2023 playlist",
+  },
+];
+
+export const homeHero = {
+  title: "Больше чем игра",
+  accent: "Это - Top Team",
+  subtitle:
+    "Top Team KG - медиа-футбольный клуб Кыргызстана, который объединяет футбол, шоу, контент и болельщиков. Следи за матчами, знакомься с составом и становись частью команды.",
+  primaryCta: { label: "Смотреть матчи", href: "/fixtures" },
+  secondaryCta: { label: "Состав команды", href: "/squad" },
+};
+
+export const homeStats = [
+  { value: 3, label: "Титула KMFL", note: "по открытому профилю клуба" },
+  { value: 1, label: "Победа в Media Phygital Cup 2", note: "требует финального подтверждения" },
+  { value: 1, label: "Чемпионство MFL KG 2023", note: "финал против FC DJO - 4:0" },
+];
+
+export const clubFacts = [
+  { label: "Формат", value: "Медиа-футбольный клуб" },
+  { label: "База", value: "Кыргызстан, Бишкек - уточняется официально" },
+  { label: "Фокус", value: "Матчи, медиа-контент, партнерства, комьюнити" },
 ];
 
 export const clubTimeline = [
-  { year: "1998", title: "Основание клуба", text: "Группа энтузиастов и бывших игроков создала клуб с амбицией стать лучшим." },
-  { year: "2003", title: "Первый трофей", text: "Кубок региона — первый шаг к большой истории Top Team." },
-  { year: "2011", title: "Выход в элиту", text: "Клуб пробивается в высший дивизион и заявляет о себе на всю страну." },
-  { year: "2017", title: "Открытие стадиона", text: "Современный Top Team Arena принимает 45 000 болельщиков." },
-  { year: "2024", title: "Чемпионство", text: "Самый яркий сезон: чемпионский титул и выход в еврокубки." },
-  { year: "2026", title: "Новая эра", text: "Молодая команда, амбициозные цели, глобальные горизонты." },
+  {
+    year: "2022",
+    title: "Запуск проекта",
+    text: "Top Team KG начал путь как медиа-футбольный проект. Год основания указан в открытых источниках и должен быть подтвержден клубом перед публикацией как официальный.",
+  },
+  {
+    year: "2023",
+    title: "Сильный сезон в MFL KG",
+    text: "Команда прошла сезон в Media Football League KG и стала одним из самых заметных проектов кыргызского медиафутбола.",
+  },
+  {
+    year: "2023",
+    title: "Победа в финале",
+    text: "30 июня 2023 года Top Team обыграл FC DJO со счетом 4:0 в финале MFL KG. Это один из ключевых подтвержденных матчей для истории сайта.",
+  },
+  {
+    year: "2024",
+    title: "Рост медиа-экосистемы",
+    text: "Вокруг команды усилились контент, backstage, личные бренды игроков и работа с аудиторией, что отличает клуб от классического футбольного сайта.",
+  },
+  {
+    year: "2025",
+    title: "Новые вызовы",
+    text: "В открытых источниках есть публикации о матчах против крупных соперников и участии в турнирах вроде Кубка Кыргызской Республики. Полный календарь требует сверки с клубом.",
+  },
+  {
+    year: "2026",
+    title: "Официальная цифровая площадка",
+    text: "Текущая версия сайта перестраивается под реальный бренд Top Team KG: состав, матчи, новости, медиа, партнерства и контакты без шаблонных заглушек.",
+  },
 ];
 
 export const clubValues = [
-  { title: "Победа", text: "Мы играем, чтобы выигрывать. Каждая тренировка, каждый матч — шаг к трофею." },
-  { title: "Семья", text: "Игроки, тренеры, болельщики — единое целое. Стадион — наш дом." },
-  { title: "Развитие", text: "Академия воспитывает таланты. Мы верим в молодость и рост." },
-  { title: "Уважение", text: "Уважение к сопернику, к игре, к болельщикам — фундамент клуба." },
+  {
+    title: "Победа",
+    text: "Мы не играем, чтобы участвовать. Мы играем, чтобы побеждать и задавать уровень в медиафутболе Кыргызстана.",
+  },
+  {
+    title: "Команда",
+    text: "Игроки, менеджмент, болельщики и партнеры - это одна экосистема, а не набор отдельных блоков.",
+  },
+  {
+    title: "Медийность",
+    text: "Top Team живет не только на поле. Контент, интервью, Reels и эмоции матчей - такая же часть бренда, как счет на табло.",
+  },
+  {
+    title: "Открытость",
+    text: "Клуб строит диалог с аудиторией, развивает комьюнити и показывает живую внутреннюю кухню проекта.",
+  },
 ];
 
-export const squadFilters = ["Все", "Вратарь", "Защитник", "Полузащитник", "Нападающий"];
+export const missionVision = [
+  {
+    title: "Миссия",
+    text: "Развивать медиафутбол в Кыргызстане, объединять людей вокруг футбола и создавать яркий спортивный контент, который вдохновляет новое поколение игроков и болельщиков.",
+  },
+  {
+    title: "Видение",
+    text: "Стать одним из самых узнаваемых медиа-футбольных клубов Центральной Азии и вывести кыргызский медиафутбол на международный уровень.",
+  },
+  {
+    title: "Тон коммуникации",
+    text: "Уверенный, энергичный, современный, спортивный. Без лишней официальности, но с профессиональной подачей.",
+  },
+];
+
+export const achievements = [
+  {
+    title: "3x Champions KMFL",
+    year: "требует подтверждения",
+    description: "Указано в открытом Instagram-профиле клуба как одно из главных достижений бренда.",
+    status: "Использовать после финального согласования",
+  },
+  {
+    title: "Champions Media Phygital Cup 2",
+    year: "требует подтверждения",
+    description: "Достижение фигурирует в профиле клуба и связанных публикациях как важный трофей проекта.",
+    status: "Использовать после финального согласования",
+  },
+  {
+    title: "Чемпион MFL KG",
+    year: "2023",
+    description: "Top Team победил FC DJO в финале MFL KG со счетом 4:0. Этот результат указан в открытых источниках и подходит для истории клуба.",
+    status: "Подтверждено открытыми спортивными источниками",
+  },
+  {
+    title: "Международные медиа-матчи",
+    year: "2023+",
+    description: "Есть публикации о матчах против известных медиафутбольных команд, включая SD Family.",
+    status: "Нужно собрать полный список и даты",
+  },
+];
+
+export const squadFilters = [
+  "Все",
+  "Вратарь",
+  "Защитник",
+  "Нападающий",
+  "Медиа-игрок",
+  "Игрок",
+];
 
 export const players = [
-  { id: "arsen-kalinin", name: "Арсен Калинин", number: 1, position: "Вратарь", nationality: "Россия", age: 28, appearances: 31, goals: 0, assists: 0, rating: 8.1, bio: "Хладнокровный лидер штрафной площади и один из лучших вратарей лиги по игре на линии.", photo_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1200&q=80&auto=format&fit=crop" },
-  { id: "nikita-orlov", name: "Никита Орлов", number: 4, position: "Защитник", nationality: "Россия", age: 25, appearances: 29, goals: 2, assists: 3, rating: 7.8, bio: "Центральный защитник с сильной первой передачей и отличным выбором позиции.", photo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200&q=80&auto=format&fit=crop" },
-  { id: "daniil-sokolov", name: "Даниил Соколов", number: 22, position: "Защитник", nationality: "Россия", age: 23, appearances: 27, goals: 1, assists: 5, rating: 7.5, bio: "Энергичный фланговый защитник, который даёт ширину в атаке и не проигрывает в скорости.", photo_url: "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=1200&q=80&auto=format&fit=crop" },
-  { id: "roman-belov", name: "Роман Белов", number: 6, position: "Полузащитник", nationality: "Россия", age: 29, appearances: 32, goals: 4, assists: 8, rating: 8.4, bio: "Мозг команды в центре поля. Управляет темпом игры и задаёт ритм прессингу.", photo_url: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=1200&q=80&auto=format&fit=crop" },
-  { id: "ilias-hadji", name: "Илиас Хаджи", number: 10, position: "Полузащитник", nationality: "Марокко", age: 24, appearances: 30, goals: 9, assists: 11, rating: 8.8, bio: "Креативный плеймейкер, который видит линии передачи на полсекунды раньше остальных.", photo_url: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=1200&q=80&auto=format&fit=crop" },
-  { id: "egor-antonov", name: "Егор Антонов", number: 8, position: "Полузащитник", nationality: "Россия", age: 21, appearances: 24, goals: 3, assists: 6, rating: 7.7, bio: "Выпускник академии, уже ставший важной частью ротации первой команды.", photo_url: "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=1200&q=80&auto=format&fit=crop" },
-  { id: "leonid-zharkov", name: "Леонид Жарков", number: 9, position: "Нападающий", nationality: "Россия", age: 27, appearances: 31, goals: 18, assists: 4, rating: 8.6, bio: "Классический форвард штрафной площади, который превращает полумоменты в голы.", photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80&auto=format&fit=crop" },
-  { id: "tiago-mendes", name: "Тиаго Мендес", number: 11, position: "Нападающий", nationality: "Португалия", age: 26, appearances: 28, goals: 13, assists: 9, rating: 8.3, bio: "Скоростной инсайд, который любит смещаться в центр и завершать эпизоды ударом с левой.", photo_url: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=1200&q=80&auto=format&fit=crop" },
+  {
+    id: "anton-zemlyanukhin",
+    name: "Антон Землянухин",
+    number: null,
+    position: "Нападающий",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Опытный игрок клуба, упоминался в контексте Top Team",
+    status: "Требует подтверждения",
+    bio: "Бывший игрок сборной Кыргызстана, чье имя связано с Top Team в открытых источниках. На сайте его лучше подавать как опытного футболиста клуба только после финального подтверждения состава.",
+    source_note: "Открытые спортивные публикации и упоминания в медиа.",
+    pending_fields: ["Игровой номер", "Актуальный статус в составе", "Фото и соцсети"],
+  },
+  {
+    id: "veniamin-shumeiko",
+    name: "Вениамин Шумейко",
+    number: null,
+    position: "Защитник",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Защитник, бывший игрок сборной",
+    status: "Требует подтверждения",
+    bio: "Опытный защитник, который упоминался в публикациях о Top Team. Может усиливать образ клуба как амбициозного медиа-проекта с серьезным футбольным бэкграундом.",
+    source_note: "Открытые спортивные публикации.",
+    pending_fields: ["Игровой номер", "Статус участия в сезоне", "Индивидуальные фото"],
+  },
+  {
+    id: "ruslan-amirov",
+    name: "Руслан Амиров",
+    number: null,
+    position: "Вратарь",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Вратарь, бывший игрок сборной Кыргызстана",
+    status: "Требует подтверждения",
+    bio: "Руслан Амиров фигурирует в списках игроков, связанных с Top Team. Для полноценной карточки нужны официальный портрет, биография и сезонная статистика.",
+    source_note: "Открытые публикации о медиа-лиге.",
+    pending_fields: ["Матчи", "Сухие матчи", "Ссылка на соцсети"],
+  },
+  {
+    id: "david-tetteh",
+    name: "Давид Тетте",
+    number: null,
+    position: "Игрок",
+    nationality: "уточняется",
+    age: null,
+    role: "Опытный футболист",
+    status: "Требует подтверждения",
+    bio: "Упоминался среди игроков команды. На текущем сайте лучше оставить нейтральную подачу до сверки с клубом: имя, роль и короткое описание без неподтвержденной статистики.",
+    source_note: "Открытые упоминания состава.",
+    pending_fields: ["Позиция", "Статистика", "Фотоматериалы"],
+  },
+  {
+    id: "daniel-tego",
+    name: "Даниэл Тэго",
+    number: null,
+    position: "Игрок",
+    nationality: "уточняется",
+    age: null,
+    role: "Известный игрок, связанный с командой",
+    status: "Требует подтверждения",
+    bio: "Имя игрока встречается в открытых данных о Top Team. До получения официального ростера лучше не указывать дополнительные персональные данные и игровые цифры.",
+    source_note: "Открытые упоминания состава.",
+    pending_fields: ["Позиция", "Номер", "Сезонный статус"],
+  },
+  {
+    id: "bektur-talgat-uulu",
+    name: "Бектур Талгат уулу",
+    number: null,
+    position: "Игрок",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Игрок, упоминаемый среди состава Top Team",
+    status: "Требует подтверждения",
+    bio: "Бектур Талгат уулу фигурирует в открытых источниках как часть состава Top Team. Карточку стоит раскрывать после согласования клуба.",
+    source_note: "Открытые упоминания состава.",
+    pending_fields: ["Позиция", "Фото", "Статистика"],
+  },
+  {
+    id: "zhanadil-salymbekov",
+    name: "Жанадил Салымбеков",
+    number: null,
+    position: "Медиа-игрок",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Медиа-игрок / блогер",
+    status: "Требует подтверждения",
+    bio: "Один из персонажей медийной линии клуба. В его карточке особенно важны роль в контенте, аудитория и связь с форматом медиафутбола, а не только позиция на поле.",
+    source_note: "Открытые посты и упоминания клуба.",
+    pending_fields: ["Соцсети", "Медиа-роль", "Игровые данные"],
+  },
+  {
+    id: "mirlan-malikov",
+    name: "Мирлан Маликов",
+    number: null,
+    position: "Медиа-игрок",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Актер, блогер, спортсмен",
+    status: "Требует подтверждения",
+    bio: "Мирлан Маликов подходит для отдельного представления как медиа-игрок: он расширяет связь клуба с аудиторией и контентом за пределами самих матчей.",
+    source_note: "Открытые публикации и сниппеты.",
+    pending_fields: ["Фото", "Ссылки на соцсети", "Подтверждение статуса"],
+  },
+  {
+    id: "chyngyz-kurmankozhoev",
+    name: "Чынгыз Курманкожоев",
+    number: null,
+    position: "Игрок",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Игрок состава",
+    status: "Требует подтверждения",
+    bio: "Упоминался в открытых постах как игрок Top Team. Карточка на сайте должна оставаться сдержанной, пока клуб не передаст официальный состав.",
+    source_note: "Открытые посты клуба.",
+    pending_fields: ["Позиция", "Номер", "Актуальность участия"],
+  },
+  {
+    id: "maksat-alimov",
+    name: "Максат Алимов",
+    number: null,
+    position: "Игрок",
+    nationality: "Кыргызстан",
+    age: null,
+    role: "Новый игрок / легенда - как указано в открытых сниппетах",
+    status: "Требует подтверждения",
+    bio: "Максат Алимов упоминался в открытых источниках как новый игрок. Для официального сайта важно подтвердить формулировку, роль и текущий статус в проекте.",
+    source_note: "Открытые сниппеты и посты.",
+    pending_fields: ["Официальная формулировка", "Фото", "Позиция"],
+  },
 ];
 
 export const matches = [
-  { id: "match-zenit", date: "2026-07-18T18:30:00+06:00", competition: "Премьер-лига", venue: "home", status: "upcoming", opponent: "Zenit City", stadium: "Top Team Arena", home_score: 0, away_score: 0 },
-  { id: "match-dynamo", date: "2026-07-25T20:00:00+06:00", competition: "Премьер-лига", venue: "away", status: "upcoming", opponent: "Dynamo North", stadium: "North Park", home_score: 0, away_score: 0 },
-  { id: "match-ural", date: "2026-08-02T19:00:00+06:00", competition: "Кубок страны", venue: "home", status: "upcoming", opponent: "Ural Forge", stadium: "Top Team Arena", home_score: 0, away_score: 0 },
-  { id: "match-rubin-live", date: "2026-07-02T20:00:00+06:00", competition: "Премьер-лига", venue: "home", status: "live", opponent: "Rubin East", stadium: "Top Team Arena", home_score: 2, away_score: 1 },
-  { id: "match-baltika", date: "2026-06-24T18:30:00+06:00", competition: "Премьер-лига", venue: "away", status: "finished", opponent: "Baltika", stadium: "Baltika Park", home_score: 1, away_score: 3 },
-  { id: "match-spartak", date: "2026-06-15T21:00:00+06:00", competition: "Премьер-лига", venue: "home", status: "finished", opponent: "Spartak South", stadium: "Top Team Arena", home_score: 2, away_score: 2 },
+  {
+    id: "mfl-final-2023",
+    date: "2023-06-30T20:00:00+06:00",
+    date_label: "30 июня 2023",
+    competition: "MFL KG",
+    stage: "Финал",
+    venue: "away",
+    status: "finished",
+    opponent: "FC DJO",
+    stadium: "уточняется",
+    team_score: 4,
+    opponent_score: 0,
+    source: "Mediafut",
+    summary: "Top Team выиграл финал MFL KG со счетом 4:0 и закрепил одну из главных побед в истории проекта.",
+    cta_label: "Открыть источник",
+    cta_href: "https://mediafut.com/competition/media-football-league-kg-1-sezon/",
+  },
+  {
+    id: "mfl-semifinal-inazuma",
+    date: "2023-06-21T19:00:00+06:00",
+    date_label: "21 июня 2023",
+    competition: "MFL KG",
+    stage: "Полуфинал / плей-офф",
+    venue: "home",
+    status: "finished",
+    opponent: "INAZUMA ELEVEN",
+    stadium: "уточняется",
+    team_score: 3,
+    opponent_score: 1,
+    source: "Mediafut",
+    summary: "Победа в плей-офф позволила команде выйти в решающий матч турнира.",
+    cta_label: "Открыть источник",
+    cta_href: "https://mediafut.com/competition/media-football-league-kg-1-sezon/",
+  },
+  {
+    id: "mfl-group-djo",
+    date: "2023-06-13T19:00:00+06:00",
+    date_label: "13 июня 2023",
+    competition: "MFL KG",
+    stage: "Групповой этап",
+    venue: "away",
+    status: "finished",
+    opponent: "FC DJO",
+    stadium: "уточняется",
+    team_score: 5,
+    opponent_score: 0,
+    source: "Mediafut",
+    summary: "Уверенная победа на групповом этапе против будущего финального соперника.",
+    cta_label: "Открыть источник",
+    cta_href: "https://mediafut.com/competition/media-football-league-kg-1-sezon/",
+  },
+  {
+    id: "mfl-group-osh-city",
+    date: "2023-06-07T19:00:00+06:00",
+    date_label: "7 июня 2023",
+    competition: "MFL KG",
+    stage: "Групповой этап",
+    venue: "home",
+    status: "finished",
+    opponent: "OSH CITY",
+    stadium: "уточняется",
+    team_score: 1,
+    opponent_score: 0,
+    source: "Mediafut",
+    summary: "Плоткий матч с минимальным счетом, где команда удержала нужный результат.",
+    cta_label: "Открыть источник",
+    cta_href: "https://mediafut.com/competition/media-football-league-kg-1-sezon/",
+  },
+  {
+    id: "mfl-group-alash",
+    date: "2023-05-30T19:00:00+06:00",
+    date_label: "30 мая 2023",
+    competition: "MFL KG",
+    stage: "Групповой этап",
+    venue: "home",
+    status: "finished",
+    opponent: "ALASH",
+    stadium: "уточняется",
+    team_score: 2,
+    opponent_score: 2,
+    source: "Mediafut",
+    summary: "Результативная ничья в рамках группового этапа MFL KG.",
+    cta_label: "Открыть источник",
+    cta_href: "https://mediafut.com/competition/media-football-league-kg-1-sezon/",
+  },
+  {
+    id: "international-sd-family",
+    date: "2023-01-01T12:00:00+06:00",
+    date_label: "2023",
+    competition: "1XBET Media Football League",
+    stage: "Международный матч",
+    venue: "away",
+    status: "finished",
+    opponent: "SD Family",
+    stadium: "уточняется",
+    team_score: 1,
+    opponent_score: 4,
+    source: "Sports.ru",
+    summary: "Один из заметных международных матчей, который показывает амбиции проекта за пределами локальной сцены.",
+    cta_label: "Открыть источник",
+    cta_href: "https://www.sports.ru/mediafootball/1114851181-sd-family-igraet-s-top-team-vo-2-m-ture-1xbet-media-football-league.html",
+  },
+  {
+    id: "cup-dordoi",
+    date: "2025-01-01T12:00:00+06:00",
+    date_label: "2025 / уточнить",
+    competition: "Кубок Кыргызской Республики",
+    stage: "Матч требует уточнения",
+    venue: "home",
+    status: "finished",
+    opponent: "Dordoi",
+    stadium: "уточняется",
+    team_score: 1,
+    opponent_score: 3,
+    source: "Instagram / открытая публикация",
+    summary: "Матч против Dordoi фигурирует в открытых публикациях, но дата, площадка и официальный статус должны быть подтверждены клубом.",
+    cta_label: "Связаться для подтверждения",
+    cta_href: "/contact",
+  },
 ];
 
-export const liveEvents = [
-  { minute: 45, type: "goal", team: "home", text: "ГОЛ! Top Team выходит вперёд после мощного удара из-за штрафной." },
-  { minute: 52, type: "yellow", team: "away", text: "Жёлтая карточка. Грубый фол в центре поля." },
-  { minute: 67, type: "sub", team: "home", text: "Замена. Свежие силы на поле — атакующий полузащитник выходит." },
-  { minute: 78, type: "goal", team: "away", text: "Гол соперника. Сравняли счёт после быстрой контратаки." },
-  { minute: 88, type: "info", team: "home", text: "Опасный момент! Штанга спасает соперника." },
+export const tournaments = [
+  {
+    name: "KMFL",
+    season: "несколько сезонов",
+    description: "Ключевой турнир в позиционировании клуба. Именно с ним связаны формулировки о трех чемпионствах.",
+  },
+  {
+    name: "MFL KG",
+    season: "2023",
+    description: "Подтвержденный сезон с финальной победой над FC DJO и важной опорой для раздела истории.",
+  },
+  {
+    name: "Media Phygital Cup 2",
+    season: "уточняется",
+    description: "Еще один важный трофей, заявленный в профиле клуба и влияющий на KPI главной страницы.",
+  },
+  {
+    name: "1XBET Media Football League",
+    season: "2023",
+    description: "Показывает участие Top Team в международных медиа-матчах и расширение аудитории проекта.",
+  },
 ];
 
-export const newsCategories = ["Все", "Матч", "Трансфер", "Клуб", "Академия", "Интервью"];
+export const newsCategories = [
+  "Все",
+  "Матчи",
+  "Клуб",
+  "Партнеры",
+  "Медиа",
+  "Турниры",
+];
 
 export const news = [
-  { id: "captain-interview", title: "Капитан: «Мы хотим, чтобы этот сезон запомнили надолго»", subtitle: "Перед стартом решающего отрезка чемпионата капитан Top Team рассказал о раздевалке, целях и давлении.", category: "Интервью", featured: true, author: "Редакция клуба", created_date: "2026-07-01T10:00:00+06:00", cover_image_url: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1600&q=80&auto=format&fit=crop", body: "## Команда готова к рывку\n\nTop Team подходит к июльскому отрезку сезона в отличной форме. Капитан команды подчёркивает, что атмосфера внутри коллектива стала ещё сильнее после последних матчей.\n\n- Мы стали смелее в прессинге.\n- Молодые игроки добавили интенсивности.\n- Болельщики дают энергию на каждом домашнем матче.\n\n### О давлении\n\nПо словам капитана, в клубе привыкли к высоким ожиданиям. Здесь играют не ради процесса, а ради победы и трофеев.\n\n> «Когда надеваешь эту футболку, ты понимаешь, что должен быть лучше в каждом эпизоде»." },
-  { id: "academy-open-day", title: "Академия Top Team проведёт открытый день отбора", subtitle: "Юные футболисты смогут пройти тестирование и познакомиться с тренерским штабом.", category: "Академия", author: "Academy Desk", created_date: "2026-06-29T14:30:00+06:00", cover_image_url: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&q=80&auto=format&fit=crop", body: "## Новый набор\n\nВ академии клуба стартует летний просмотр для игроков 8-14 лет. Участников ждут игровые упражнения, координационные тесты и встреча с тренерами.\n\n### Что взять с собой\n\n- спортивную форму\n- бутсы\n- медицинскую справку" },
-  { id: "new-winger", title: "Top Team усилил атаку: подписан фланговый нападающий", subtitle: "Клуб завершил сделку по трансферу скоростного инсайда, который присоединится к команде уже на этой неделе.", category: "Трансфер", author: "Transfer Desk", created_date: "2026-06-27T12:15:00+06:00", cover_image_url: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=1600&q=80&auto=format&fit=crop", body: "## Усиление фланга\n\nНовичок добавит скорости и вариативности в переходных фазах. Штаб рассчитывает использовать его как в схеме с двумя инсайдами, так и в роли второго форварда." },
-  { id: "matchday-atmosphere", title: "Как Top Team Arena превращается в один большой голос", subtitle: "Репортаж изнутри домашнего матча: трибуны, перформансы и ритуалы болельщиков.", category: "Клуб", author: "Media Team", created_date: "2026-06-22T09:45:00+06:00", cover_image_url: "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=1600&q=80&auto=format&fit=crop", body: "## Дом, который слышно за пределами города\n\nВ день матча район вокруг арены меняется. Люди собираются за несколько часов до стартового свистка, а клубные цвета видны в каждом квартале." },
-  { id: "cup-win", title: "Top Team прошёл в следующий раунд кубка после яркой победы", subtitle: "Команда выиграла на характере и перевернула ход матча во втором тайме.", category: "Матч", author: "Match Center", created_date: "2026-06-20T23:10:00+06:00", cover_image_url: "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=1600&q=80&auto=format&fit=crop", body: "## Камбэк вечера\n\nПосле непростого первого тайма команда прибавила в интенсивности и агрессии без мяча. Два точных удара после перерыва решили исход встречи." },
-  { id: "coach-notes", title: "Главный тренер: «Мы строим команду, которая умеет терпеть»", subtitle: "Большой разговор о тактике, характере состава и развитии молодых игроков.", category: "Интервью", author: "Редакция клуба", created_date: "2026-06-18T18:00:00+06:00", cover_image_url: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1600&q=80&auto=format&fit=crop", body: "## О характере\n\nТренерский штаб делает ставку на интенсивность, дисциплину и эмоциональную устойчивость. Именно эти качества, по мнению тренера, и определят лицо команды в концовке сезона." },
+  {
+    id: "mfl-final-win",
+    title: "Top Team KG забрал финал MFL KG",
+    subtitle: "Финал против FC DJO завершился победой 4:0 и стал главным подтвержденным матчем в истории клуба.",
+    category: "Матчи",
+    featured: true,
+    author: "Редакция Top Team KG",
+    created_date: "2023-06-30T22:00:00+06:00",
+    cover_image_url: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1600&q=80&auto=format&fit=crop",
+    body: `## Финал, который нужно показывать на главной
+
+30 июня 2023 года Top Team KG обыграл FC DJO со счетом 4:0 в финале MFL KG. Это один из самых сильных и подтвержденных результатов, который уже можно использовать в официальной истории клуба.
+
+### Почему этот матч важен
+
+- это подтвержденное чемпионство в открытых спортивных источниках
+- это хороший якорь для разделов "О клубе", "Матчи" и "Достижения"
+- это понятная точка входа для новых болельщиков и партнеров
+
+### Что еще стоит добавить позже
+
+- протокол матча
+- состав на финал
+- фото и видео хайлайты
+- цитаты игроков и штаба`,
+  },
+  {
+    id: "media-football-identity",
+    title: "Почему Top Team KG - это больше, чем просто футбольная команда",
+    subtitle: "Клуб позиционируется как медиа-проект, где спорт, шоу и контент работают вместе.",
+    category: "Клуб",
+    author: "Редакция Top Team KG",
+    created_date: "2026-07-02T10:00:00+06:00",
+    cover_image_url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&q=80&auto=format&fit=crop",
+    body: `## Три роли одного бренда
+
+Top Team KG лучше описывать через три ключевые роли:
+
+- футбольная команда
+- медиа-проект
+- комьюнити
+
+Именно такая структура помогает сайту выглядеть живым и полезным не только для болельщиков, но и для брендов, партнеров и медиа.
+
+### Что это меняет на сайте
+
+Сайт больше не должен быть просто календарем матчей. В нем должны одинаково хорошо работать состав, достижения, новости, backstage, Reels, YouTube и партнерские интеграции.`,
+  },
+  {
+    id: "international-match-sd-family",
+    title: "Международный опыт: матч против SD Family",
+    subtitle: "Top Team выходил на поле против одного из самых узнаваемых проектов медиафутбола региона.",
+    category: "Турниры",
+    author: "Редакция Top Team KG",
+    created_date: "2023-01-02T12:00:00+06:00",
+    cover_image_url: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=1600&q=80&auto=format&fit=crop",
+    body: `## Матч, который расширяет рамку
+
+В открытых публикациях есть данные о матче SD Family - Top Team в 1XBET Media Football League. Даже если результат был не в пользу Top Team, такой матч важен для позиционирования клуба.
+
+### Для чего он нужен на сайте
+
+- показывает международную амбицию проекта
+- усиливает раздел достижений и истории
+- работает на доверие со стороны партнеров и аудитории`,
+  },
+  {
+    id: "media-roadmap",
+    title: "Reels, хайлайты и backstage должны стать отдельной частью сайта",
+    subtitle: "Для медиа-клуба раздел медиа так же важен, как состав и результаты.",
+    category: "Медиа",
+    author: "Media Team",
+    created_date: "2026-07-02T09:00:00+06:00",
+    cover_image_url: "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=1600&q=80&auto=format&fit=crop",
+    body: `## Не только текст и счет
+
+Top Team KG должен рассказывать о себе через короткие видео, эмоции матчей, интервью и вертикальный контент. Поэтому на сайте нужен самостоятельный раздел "Медиа".
+
+### Что туда входит
+
+- YouTube-хайлайты
+- Instagram Reels
+- backstage с матчей и поездок
+- фотоальбомы и лучшие моменты
+
+Так сайт будет работать не как архив, а как живая цифровая площадка клуба.`,
+  },
+  {
+    id: "partners-call",
+    title: "Top Team KG открывает партнерский пакет для брендов",
+    subtitle: "Футбол, молодежная аудитория и медиа-интеграции делают клуб сильной платформой для сотрудничества.",
+    category: "Партнеры",
+    author: "Commercial Team",
+    created_date: "2026-07-02T08:30:00+06:00",
+    cover_image_url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80&auto=format&fit=crop",
+    body: `## Что получает бренд
+
+Top Team KG интересен партнерам не только матчами. Клуб объединяет спорт, digital-контент и активную молодую аудиторию.
+
+### Форматы сотрудничества
+
+- генеральный партнер
+- матчевый партнер
+- партнер формы
+- партнер видео и Reels
+- интеграции в Instagram и YouTube
+
+Следующий шаг - собрать реальные кейсы и логотипы действующих партнеров после передачи материалов клубом.`,
+  },
+  {
+    id: "roster-verification",
+    title: "Состав будет обновляться по мере подтверждения клуба",
+    subtitle: "На текущем этапе часть игроков собрана из открытых источников и помечена как требующая финального согласования.",
+    category: "Клуб",
+    author: "Редакция Top Team KG",
+    created_date: "2026-07-02T07:45:00+06:00",
+    cover_image_url: "https://images.unsplash.com/photo-1508098682722-e99c643e7485?w=1600&q=80&auto=format&fit=crop",
+    body: `## Почему это важно
+
+Для медиа-футбольного клуба игроки - это не только спортивные единицы, но и лица бренда. Поэтому нельзя публиковать неподтвержденные номера, позиции и личные данные как официальные.
+
+### Что нужно запросить у клуба
+
+- ФИО и игровой номер
+- позицию
+- фото
+- биографию
+- соцсети
+- статистику и текущий статус в составе`,
+  },
 ];
 
-export const academyJourney = [
-  { stage: "8-10 лет", title: "Первый шаг", text: "Открытый набор. Дети знакомятся с футболом и основами дисциплины." },
-  { stage: "11-14 лет", title: "Школа мастерства", text: "Тактика, техника, физика. Тренеры работают с каждым индивидуально." },
-  { stage: "15-17 лет", title: "Юношеская команда", text: "Соревнования на региональном и федеральном уровне. Скауты следят за талантами." },
-  { stage: "18+ лет", title: "Первая команда", text: "Лучшие выпускники получают шанс проявить себя в основном составе Top Team." },
+export const mediaItems = [
+  {
+    id: "reels",
+    title: "Instagram Reels",
+    type: "Вертикальный контент",
+    description: "Голы, эмоции, реакции игроков и быстрые нарезки, которые работают на мобильную аудиторию клуба.",
+    image_url: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1600&q=80&auto=format&fit=crop",
+    href: "https://www.instagram.com/topteam.kg/",
+    link_label: "Открыть Instagram",
+  },
+  {
+    id: "highlights",
+    title: "YouTube хайлайты",
+    type: "Видео",
+    description: "Матчи, обзоры, интервью и длинный формат, который дает клубу историю и глубину.",
+    image_url: "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=1600&q=80&auto=format&fit=crop",
+    href: "https://www.youtube.com/playlist?list=PL1McLR5i1MQRosOKJq1Htw8fHx-3l1zzZ",
+    link_label: "Смотреть плейлист",
+  },
+  {
+    id: "backstage",
+    title: "Backstage и day-in-the-life",
+    type: "Закулисье",
+    description: "Раздевалка, тренировки, поездки и живые моменты, которые превращают команду в настоящий медиа-бренд.",
+    image_url: "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=1600&q=80&auto=format&fit=crop",
+    href: "/contact",
+    link_label: "Запросить медиаматериалы",
+  },
+  {
+    id: "photo",
+    title: "Фотоархив матчей",
+    type: "Фото",
+    description: "Матчевые серии, командные кадры и эмоциональные сцены, которые усиливают новости и карточки игроков.",
+    image_url: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=1600&q=80&auto=format&fit=crop",
+    href: "/contact",
+    link_label: "Передать фото в клуб",
+  },
 ];
 
-export const stadiumZones = [
-  { id: "vip", name: "VIP-ложи", capacity: 800, color: "#C8A84B" },
-  { id: "west", name: "Западная трибуна", capacity: 12000, color: "#5A5A5A" },
-  { id: "east", name: "Восточная трибуна", capacity: 12000, color: "#3A3A3A" },
-  { id: "north", name: "Северная трибуна", capacity: 10000, color: "#2A2A2A" },
-  { id: "south", name: "Южная трибуна", capacity: 10000, color: "#1E1E1E" },
+export const partnerBenefits = [
+  {
+    title: "Спорт + медиа",
+    text: "Top Team дает брендам не только размещение, но и контентную интеграцию вокруг живого футбольного продукта.",
+  },
+  {
+    title: "Молодая аудитория",
+    text: "Проект ориентирован на мобильную, социальную и вовлеченную аудиторию, которая живет в Instagram, Reels и YouTube.",
+  },
+  {
+    title: "Гибкие форматы",
+    text: "От партнерства сезона до отдельных матчевых и digital-кампаний с быстрым продакшеном.",
+  },
+  {
+    title: "Контентный потенциал",
+    text: "Клуб может интегрировать бренд в форму, видео, stories, интервью, челленджи и backstage.",
+  },
 ];
 
-export const ticketZones = [
-  { id: "vip", name: "VIP-ложа", price: 8000, desc: "Лучшие места с панорамой, бар и обслуживание" },
-  { id: "west", name: "Западная трибуна", price: 3500, desc: "Центральная трибуна, отличный обзор" },
-  { id: "east", name: "Восточная трибуна", price: 2500, desc: "Активная поддержка, атмосфера фан-сектора" },
-  { id: "north", name: "Северная трибуна", price: 1500, desc: "Семейная трибуна, комфортно с детьми" },
+export const partnerFormats = [
+  {
+    title: "Генеральный партнер",
+    text: "Основной бренд сезона: форма, ключевые страницы сайта, совместные публикации и большие медийные интеграции.",
+  },
+  {
+    title: "Матчевый партнер",
+    text: "Интеграция в конкретный матч, спецконтент, матчдэй-афиши и digital-упоминания.",
+  },
+  {
+    title: "Партнер формы",
+    text: "Размещение на экипировке, визуалах и фотоконтенте команды.",
+  },
+  {
+    title: "Видео-партнер",
+    text: "Нативная интеграция в хайлайты, Reels, интервью и YouTube-форматы клуба.",
+  },
 ];
 
-export const products = [
-  { id: "home-kit-2026", name: "Домашняя форма 2026", category: "Форма", price: 6990, badge: "Новинка", sizes: ["S", "M", "L", "XL"], image_url: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1200&q=80&auto=format&fit=crop", description: "Основная игровая футболка сезона 2026. Лёгкая ткань, дышащая структура и клубные детали в премиальном исполнении." },
-  { id: "black-hoodie", name: "Худи Matchday Black", category: "Одежда", price: 5490, badge: "Sale", sizes: ["M", "L", "XL"], image_url: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=1200&q=80&auto=format&fit=crop", description: "Тёплое худи для прохладных матчевых вечеров. Минималистичный крой и золотой акцент клуба." },
-  { id: "club-scarf", name: "Шарф Top Team", category: "Аксессуары", price: 1990, badge: "Хит", sizes: [], image_url: "https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1200&q=80&auto=format&fit=crop", description: "Классический двусторонний шарф с клубной символикой и плотной вязкой." },
-  { id: "capsule-jacket", name: "Куртка Capsule Gold", category: "Коллекция", price: 11990, badge: "Новинка", sizes: ["S", "M", "L"], image_url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=80&auto=format&fit=crop", description: "Лимитированная куртка из капсульной коллекции клуба. Лаконичный силуэт и фирменная подкладка." },
-  { id: "training-top", name: "Тренировочный лонгслив", category: "Одежда", price: 4290, badge: "", sizes: ["S", "M", "L", "XL"], image_url: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200&q=80&auto=format&fit=crop", description: "Лёгкий тренировочный слой для интенсивных занятий и повседневного образа." },
-  { id: "stadium-cap", name: "Кепка Stadium", category: "Аксессуары", price: 2490, badge: "", sizes: [], image_url: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=1200&q=80&auto=format&fit=crop", description: "Универсальная кепка с вышитым логотипом клуба и регулируемой посадкой." },
+export const partnerSlots = [
+  { title: "Логотипы партнеров", status: "Ожидают материалы от клуба" },
+  { title: "Кейсы интеграций", status: "Будут добавлены после подтверждения" },
+  { title: "Пакеты спонсорства", status: "Можно публиковать уже сейчас" },
 ];
 
-export const productCategories = ["Все", "Форма", "Одежда", "Аксессуары", "Коллекция"];
-export const memberships = [
-  { name: "Supporter", price: "1 500", period: "год", features: ["Доступ к контенту клуба", "10% скидка в магазине", "Приоритет на билеты", "Членская карточка"], featured: false },
-  { name: "Member", price: "5 000", period: "год", features: ["Всё из Supporter", "Гарантированный абонемент", "Эксклюзивные мероприятия", "Доступ в фан-клуб", "20% скидка в магазине"], featured: true },
-  { name: "VIP Member", price: "25 000", period: "год", features: ["Всё из Member", "VIP-ложа на 3 матча", "Встреча с игроками", "Именная табличка на стадионе", "Персональный менеджер"], featured: false },
+export const contactCards = [
+  {
+    label: "Instagram",
+    value: "@topteam.kg",
+    href: "https://www.instagram.com/topteam.kg/",
+  },
+  {
+    label: "YouTube",
+    value: "Top Team KG / требуется официальная ссылка",
+    href: "https://www.youtube.com/playlist?list=PL1McLR5i1MQRosOKJq1Htw8fHx-3l1zzZ",
+  },
+  {
+    label: "Email",
+    value: "Будет опубликован после подтверждения клуба",
+    href: null,
+  },
+  {
+    label: "Телефон / WhatsApp",
+    value: "Будет опубликован после подтверждения клуба",
+    href: null,
+  },
 ];
 
-export const partners = [
-  { name: "AeroJet", category: "Авиаперевозки", tier: "Главный партнёр" },
-  { name: "NordBank", category: "Финансы", tier: "Главный партнёр" },
-  { name: "PowerFuel", category: "Энергетика", tier: "Премиум" },
-  { name: "Sportek", category: "Спортивная экипировка", tier: "Премиум" },
-  { name: "MediaGroup", category: "Медиа", tier: "Премиум" },
-  { name: "AutoDrive", category: "Авто", tier: "Партнёр" },
-  { name: "FreshFit", category: "Питание", tier: "Партнёр" },
-  { name: "TechCloud", category: "IT", tier: "Партнёр" },
-  { name: "BuildCorp", category: "Строительство", tier: "Партнёр" },
-  { name: "LifeInsure", category: "Страхование", tier: "Партнёр" },
+export const contactTopics = [
+  "Сотрудничество",
+  "Матчи и турниры",
+  "СМИ и интервью",
+  "Игроки и состав",
+  "Другое",
 ];
 
-export const partnerTiers = ["Все", "Главный партнёр", "Премиум", "Партнёр"];
-export const getUpcomingMatches = () => matches.filter((match) => match.status === "upcoming");
-export const getLatestNews = (limit) => [...news].sort((a, b) => new Date(b.created_date) - new Date(a.created_date)).slice(0, limit);
+export const getUpcomingMatches = () =>
+  matches.filter((match) => match.status === "upcoming");
+
+export const getLatestFinishedMatch = () =>
+  [...matches]
+    .filter((match) => match.status === "finished")
+    .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
+export const getFeaturedMatch = () => getUpcomingMatches()[0] || getLatestFinishedMatch();
+
+export const getLatestNews = (limit) =>
+  [...news]
+    .sort((a, b) => new Date(b.created_date) - new Date(a.created_date))
+    .slice(0, limit);
+
 export const getPlayerById = (id) => players.find((player) => player.id === id);
+
 export const getNewsById = (id) => news.find((article) => article.id === id);
-export const getProductById = (id) => products.find((product) => product.id === id);

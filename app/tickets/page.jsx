@@ -1,29 +1,28 @@
-"use client";
-
-import { Check, ChevronRight, CreditCard, MapPin } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
 import SiteShell from "../../components/layout/SiteShell";
+import Reveal from "../../components/shared/Reveal";
 import SplitTitle from "../../components/shared/SplitTitle";
-import { getUpcomingMatches, ticketZones } from "../../data/siteData";
-
-const steps = ["Матч", "Сектор", "Оплата"];
 
 export default function Page() {
-  const upcomingMatches = getUpcomingMatches();
-  const [step, setStep] = useState(0);
-  const [selectedMatchId, setSelectedMatchId] = useState(null);
-  const [selectedZoneId, setSelectedZoneId] = useState(null);
-  const [quantity, setQuantity] = useState(1);
-  const selectedMatch = upcomingMatches.find((match) => match.id === selectedMatchId);
-  const selectedZone = ticketZones.find((zone) => zone.id === selectedZoneId);
-  const total = selectedZone ? selectedZone.price * quantity : 0;
-
   return (
     <SiteShell>
       <div className="min-h-screen bg-ink pt-20 md:pt-24">
-        <section className="py-16 md:py-24"><div className="mx-auto max-w-[1440px] px-5 md:px-10"><span className="text-xs uppercase tracking-[0.3em] text-gold">Билеты</span><SplitTitle text="Попади на стадион" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,7rem)] text-white" /></div></section>
-        <section className="border-t border-ink-border py-8"><div className="mx-auto max-w-[1440px] px-5 md:px-10"><div className="flex items-center gap-2 text-sm md:gap-4">{steps.map((label, index) => <div key={label} className="flex items-center gap-2 md:gap-4"><div className={`flex items-center gap-2 ${index === step ? "text-gold" : index < step ? "text-white" : "text-ash"}`}><span className={`flex h-7 w-7 items-center justify-center rounded-full border font-display text-xs font-bold ${index === step ? "border-gold bg-gold text-ink" : index < step ? "border-white bg-white text-ink" : "border-ink-border"}`}>{index < step ? <Check size={14} /> : index + 1}</span><span className="hidden font-heading text-xs uppercase tracking-wide sm:inline md:text-sm">{label}</span></div>{index < 2 && <ChevronRight size={16} className="text-ash" />}</div>)}</div></div></section>
-        <section className="py-12 pb-32 md:py-20"><div className="mx-auto max-w-[1440px] px-5 md:px-10">{step === 0 && <div><h2 className="mb-8 font-display text-2xl text-white md:text-3xl">Выбери матч</h2>{upcomingMatches.length === 0 ? <div className="py-16 text-center text-ash">Предстоящих матчей пока нет. Загляните позже.</div> : <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{upcomingMatches.map((match) => <button key={match.id} onClick={() => { setSelectedMatchId(match.id); setStep(1); }} className="card-gradient group border border-ink-border p-6 text-left transition-colors hover:border-gold"><div className="mb-4 flex items-center gap-2 text-xs text-ash">{new Date(match.date).toLocaleDateString("ru-RU", { day: "numeric", month: "long" })} · {match.competition}</div><p className="font-display text-2xl text-white transition-colors group-hover:text-gold">Top Team <span className="text-lg text-ash">vs</span> {match.opponent}</p><p className="mt-2 flex items-center gap-1.5 text-sm text-ash"><MapPin size={12} /> {match.stadium || "Top Team Arena"}</p></button>)}</div>}</div>}{step === 1 && selectedMatch && <div><h2 className="mb-2 font-display text-2xl text-white md:text-3xl">Выбери сектор</h2><p className="mb-8 text-ash">{selectedMatch.opponent} · {new Date(selectedMatch.date).toLocaleDateString("ru-RU")}</p><div className="grid gap-4 md:grid-cols-2">{ticketZones.map((zone) => <button key={zone.id} onClick={() => { setSelectedZoneId(zone.id); setStep(2); }} className={`card-gradient group border p-6 text-left transition-colors ${selectedZoneId === zone.id ? "border-gold" : "border-ink-border hover:border-ash"}`}><div className="flex items-center justify-between"><h3 className="font-display text-xl text-white transition-colors group-hover:text-gold">{zone.name}</h3><span className="font-display text-xl font-bold text-gold">{zone.price.toLocaleString("ru-RU")} ₽</span></div><p className="mt-2 text-sm text-ash">{zone.desc}</p></button>)}</div><button onClick={() => setStep(0)} className="mt-8 font-heading text-sm uppercase tracking-wide text-ash hover:text-gold">← Назад</button></div>}{step === 2 && selectedMatch && selectedZone && <div className="max-w-xl"><h2 className="mb-8 font-display text-2xl text-white md:text-3xl">Оплата заказа</h2><div className="card-gradient mb-6 border border-ink-border p-6"><div className="mb-1 flex items-center justify-between text-sm text-ash"><span>Матч</span><span className="text-white">Top Team vs {selectedMatch.opponent}</span></div><div className="mb-1 flex items-center justify-between text-sm text-ash"><span>Сектор</span><span className="text-white">{selectedZone.name}</span></div><div className="mb-4 flex items-center justify-between text-sm text-ash"><span>Количество</span><div className="flex items-center gap-3"><button onClick={() => setQuantity((current) => Math.max(1, current - 1))} className="h-7 w-7 border border-ink-border text-white hover:border-gold">−</button><span className="w-6 text-center font-display text-white">{quantity}</span><button onClick={() => setQuantity((current) => Math.min(10, current + 1))} className="h-7 w-7 border border-ink-border text-white hover:border-gold">+</button></div></div><div className="flex items-center justify-between border-t border-ink-border pt-4"><span className="font-heading text-sm uppercase text-white">Итого</span><span className="font-display text-3xl font-bold text-gold">{total.toLocaleString("ru-RU")} ₽</span></div></div><button className="accent-glow accent-glow-hover inline-flex w-full items-center justify-center gap-2 bg-gold px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-gold-light"><CreditCard size={16} /> Перейти к оплате</button><button onClick={() => setStep(1)} className="mt-4 font-heading text-sm uppercase tracking-wide text-ash hover:text-gold">← Назад</button></div>}</div></section>
+        <section className="py-16 md:py-24">
+          <div className="mx-auto max-w-4xl px-5 text-center md:px-10">
+            <span className="text-xs uppercase tracking-[0.3em] text-gold">Roadmap</span>
+            <SplitTitle text="Билеты появятся после подтверждения матчдэй-инфраструктуры" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,6rem)] text-white" />
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-ash">
+                Для первой версии сайта в документе рекомендовано не оставлять фейковую билетную механику. Продажа билетов имеет смысл только после подтвержденных матчей, площадок и секторов.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <Link href="/fixtures" className="mt-10 inline-flex bg-gold px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-gold-light">
+                Перейти к матчам
+              </Link>
+            </Reveal>
+          </div>
+        </section>
       </div>
     </SiteShell>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import SiteShell from "../../components/layout/SiteShell";
 import Reveal from "../../components/shared/Reveal";
 import SplitTitle from "../../components/shared/SplitTitle";
@@ -9,7 +9,7 @@ import { news, newsCategories } from "../../data/siteData";
 
 export default function Page() {
   const [activeCategory, setActiveCategory] = useState("Все");
-  const filteredNews = useMemo(() => (activeCategory === "Все" ? news : news.filter((article) => article.category === activeCategory)), [activeCategory]);
+  const filteredNews = activeCategory === "Все" ? news : news.filter((article) => article.category === activeCategory);
   const featured = filteredNews.find((article) => article.featured) || filteredNews[0];
   const rest = filteredNews.filter((article) => article.id !== featured?.id);
 
@@ -18,8 +18,11 @@ export default function Page() {
       <div className="min-h-screen bg-ink pt-20 md:pt-24">
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Жизнь клуба</span>
-            <SplitTitle text="Новости Top Team" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,7rem)] text-white" />
+            <span className="text-xs uppercase tracking-[0.3em] text-gold">Новости</span>
+            <SplitTitle text="Жизнь Top Team KG" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,7rem)] text-white" />
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ash">
+              Раздел новостей должен строиться вокруг реальных матчей, партнерств, медиа-форматов и важных обновлений клуба. Ниже уже заложена эта редакционная логика вместо тестовых заглушек.
+            </p>
           </div>
         </section>
         <section className="sticky top-16 z-30 border-t border-ink-border bg-ink/90 py-6 backdrop-blur-md md:top-20">
@@ -46,7 +49,7 @@ export default function Page() {
                         <div className="absolute bottom-0 left-0 max-w-2xl p-6 md:p-12">
                           <span className="mb-4 inline-block bg-gold px-2.5 py-1 font-heading text-[10px] uppercase tracking-wider text-ink">{featured.category}</span>
                           <h2 className="text-display text-3xl text-white transition-colors group-hover:text-gold md:text-5xl">{featured.title}</h2>
-                          {featured.subtitle && <p className="mt-3 line-clamp-2 text-lg text-ash">{featured.subtitle}</p>}
+                          {featured.subtitle && <p className="mt-3 line-clamp-3 text-lg text-ash">{featured.subtitle}</p>}
                         </div>
                       </div>
                     </Link>

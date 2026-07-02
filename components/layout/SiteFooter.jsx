@@ -1,64 +1,83 @@
 import Link from "next/link";
-import { Camera, CirclePlay, Globe, MessageCircle } from "lucide-react";
+import { Camera, CirclePlay, Mail, MessageCircle } from "lucide-react";
+import { socialLinks } from "../../data/siteData";
 
-const socials = [Camera, Globe, CirclePlay, MessageCircle];
+const socialIcons = {
+  Instagram: Camera,
+  YouTube: CirclePlay,
+  Email: Mail,
+  Telegram: MessageCircle,
+};
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-ink-border bg-ink">
       <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-24">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-6">
-          <div className="col-span-2">
-            <span className="font-display text-3xl font-bold text-white">TOP<span className="text-gold">TEAM</span></span>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ash">Футбольный клуб «Top Team». Создан, чтобы побеждать и вдохновлять. Присоединяйся к движению.</p>
-            <div className="mt-6 flex gap-3">
-              {socials.map((Icon, index) => (
-                <a key={index} href="#" className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-border text-ash transition-colors hover:border-gold hover:text-gold" aria-label="Соцсеть">
-                  <Icon size={16} />
-                </a>
-              ))}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:grid-cols-6">
+          <div className="md:col-span-2 lg:col-span-2">
+            <span className="font-display text-3xl font-bold text-white">
+              TOP<span className="text-gold">TEAM</span>
+            </span>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ash">
+              Top Team KG - медиа-футбольный клуб Кыргызстана. Сайт объединяет матчи,
+              состав, новости, медиа и партнерские возможности без шаблонных заглушек.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {socialLinks.map((item) => {
+                const Icon = socialIcons[item.label] || MessageCircle;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-border text-ash transition-colors hover:border-gold hover:text-gold"
+                    aria-label={item.label}
+                  >
+                    <Icon size={16} />
+                  </a>
+                );
+              })}
             </div>
           </div>
           <div>
-            <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Клуб</h4>
+            <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Разделы</h4>
             <ul className="space-y-2.5 text-sm">
               <li><Link href="/club" className="text-ash transition-colors hover:text-white">О клубе</Link></li>
-              <li><Link href="/academy" className="text-ash transition-colors hover:text-white">Академия</Link></li>
-              <li><Link href="/stadium" className="text-ash transition-colors hover:text-white">Стадион</Link></li>
-              <li><Link href="/partners" className="text-ash transition-colors hover:text-white">Партнёры</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Болельщикам</h4>
-            <ul className="space-y-2.5 text-sm">
+              <li><Link href="/squad" className="text-ash transition-colors hover:text-white">Состав</Link></li>
               <li><Link href="/fixtures" className="text-ash transition-colors hover:text-white">Матчи</Link></li>
-              <li><Link href="/tickets" className="text-ash transition-colors hover:text-white">Билеты</Link></li>
-              <li><Link href="/membership" className="text-ash transition-colors hover:text-white">Членство</Link></li>
-              <li><Link href="/live" className="text-ash transition-colors hover:text-white">Live Center</Link></li>
+              <li><Link href="/news" className="text-ash transition-colors hover:text-white">Новости</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Магазин</h4>
+            <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Медиа</h4>
             <ul className="space-y-2.5 text-sm">
-              <li><Link href="/shop" className="text-ash transition-colors hover:text-white">Витрина</Link></li>
-              <li><Link href="/shop" className="text-ash transition-colors hover:text-white">Форма</Link></li>
-              <li><Link href="/shop" className="text-ash transition-colors hover:text-white">Аксессуары</Link></li>
+              <li><Link href="/media" className="text-ash transition-colors hover:text-white">Видео и Reels</Link></li>
+              <li><Link href="/partners" className="text-ash transition-colors hover:text-white">Партнеры</Link></li>
+              <li><Link href="/contact" className="text-ash transition-colors hover:text-white">Контакты</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Контакты</h4>
             <ul className="space-y-2.5 text-sm">
-              <li><Link href="/contact" className="text-ash transition-colors hover:text-white">Связаться</Link></li>
-              <li><span className="text-ash">info@topteam.fc</span></li>
-              <li><span className="text-ash">+7 (800) 000-00-00</span></li>
+              <li><a href="https://www.instagram.com/topteam.kg/" target="_blank" rel="noreferrer" className="text-ash transition-colors hover:text-white">@topteam.kg</a></li>
+              <li><span className="text-ash">Email публикуется после подтверждения клуба</span></li>
+              <li><span className="text-ash">Телефон публикуется после подтверждения клуба</span></li>
             </ul>
+          </div>
+          <div>
+            <h4 className="mb-4 font-heading text-xs uppercase tracking-[0.2em] text-gold">Статус данных</h4>
+            <p className="text-sm leading-relaxed text-ash">
+              Состав, контакты и часть достижений собраны из открытых источников и помечены
+              как требующие финального согласования с клубом.
+            </p>
           </div>
         </div>
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-ink-border pt-8 md:flex-row">
-          <p className="text-xs text-ash">© 2026 Top Team FC. Все права защищены.</p>
+          <p className="text-xs text-ash">© 2026 Top Team KG. Официальная цифровая площадка клуба.</p>
           <div className="flex gap-6 text-xs text-ash">
-            <a href="#" className="transition-colors hover:text-white">Политика конфиденциальности</a>
-            <a href="#" className="transition-colors hover:text-white">Условия использования</a>
+            <Link href="/contact" className="transition-colors hover:text-white">Связаться</Link>
+            <Link href="/partners" className="transition-colors hover:text-white">Стать партнером</Link>
           </div>
         </div>
       </div>

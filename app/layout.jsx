@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Top Team Hub",
+  title: "Top Team KG - медиа-футбольный клуб Кыргызстана",
   description:
-    "An all-in-one digital platform for football clubs to manage player performance, team communications, and match analysis in one unified, high-performance interface.",
+    "Официальный сайт Top Team KG: состав команды, матчи, достижения, новости, медиа и партнерство.",
   icons: {
     icon: "/logo.png",
   },
