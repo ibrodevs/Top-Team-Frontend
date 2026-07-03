@@ -1,119 +1,174 @@
 "use client";
 
+import { Calendar, Check, Clapperboard, Megaphone, Play, Shirt, Trophy } from "lucide-react";
 import { useState } from "react";
 import SiteShell from "../../components/layout/SiteShell";
 import Reveal from "../../components/shared/Reveal";
-import SplitTitle from "../../components/shared/SplitTitle";
+import Button from "../../components/ui/Button";
+import Container from "../../components/ui/Container";
+import PageHero from "../../components/ui/PageHero";
+import SectionHeader from "../../components/ui/SectionHeader";
 import { partnerBenefits, partnerFormats, partnerSlots } from "../../data/siteData";
+
+const formatIcons = {
+  shirt: Shirt,
+  clapperboard: Clapperboard,
+  calendar: Calendar,
+  play: Play,
+  trophy: Trophy,
+  megaphone: Megaphone,
+};
+
+const inputClasses =
+  "w-full rounded-xl border border-white/12 bg-navy-950/60 px-4 py-3 text-white outline-none transition-all duration-300 placeholder:text-ash/50 focus:border-electric focus:shadow-glow";
 
 export default function Page() {
   const [sent, setSent] = useState(false);
 
   return (
     <SiteShell>
-      <div className="min-h-screen bg-ink pt-20 md:pt-24">
-        <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Партнеры</span>
-            <SplitTitle text="Платформа для брендов рядом с Top Team KG" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,7rem)] text-white" />
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ash">
-              Страница партнерства должна не просто показывать логотипы, а объяснять ценность клуба для брендов: футбол, медиа, молодежная аудитория, контент и гибкие интеграции.
-            </p>
+      <PageHero
+        eyebrow="Партнерство"
+        title="Станьте частью Top Team KG"
+        description="Футбол, медиа, молодежная аудитория и живой контент — площадка для брендов, которые хотят быть ближе к новой спортивной культуре."
+      >
+        <Reveal delay={0.35}>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Button href="#partner-form">Получить партнерское предложение</Button>
+            <Button href="/contact" variant="secondary">Связаться с клубом</Button>
           </div>
-        </section>
+        </Reveal>
+      </PageHero>
 
-        <section className="border-t border-ink-border py-12">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {partnerBenefits.map((item, index) => (
-                <Reveal key={item.title} delay={(index % 4) * 0.08}>
-                  <div className="card-gradient h-full border border-ink-border p-8">
-                    <h2 className="font-display text-2xl text-white">{item.title}</h2>
-                    <p className="mt-4 text-sm leading-relaxed text-ash">{item.text}</p>
+      {/* Почему Top Team */}
+      <section className="bg-navy-900 py-16 md:py-24">
+        <Container>
+          <SectionHeader
+            eyebrow="Ценность"
+            title="Почему бренды выбирают нас"
+          />
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {partnerBenefits.map((item, index) => (
+              <Reveal key={item.title} delay={(index % 4) * 0.06}>
+                <div className="glass-card group h-full rounded-2xl p-7 transition-all duration-500 hover:shadow-glow">
+                  <span className="gradient-text font-display text-4xl font-bold">0{index + 1}</span>
+                  <h3 className="mt-4 font-display text-xl font-semibold uppercase text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ash">{item.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Форматы сотрудничества */}
+      <section className="relative border-t border-electric/10 bg-navy-950 py-16 md:py-24">
+        <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-96" />
+        <Container className="relative">
+          <SectionHeader
+            eyebrow="Форматы"
+            title="Форматы сотрудничества"
+            description="От логотипа на форме до полноценных медиа-кампаний — собираем пакет под задачи бренда."
+          />
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {partnerFormats.map((format, index) => {
+              const Icon = formatIcons[format.icon] || Trophy;
+              return (
+                <Reveal key={format.title} delay={(index % 3) * 0.06}>
+                  <div className="glass-card group h-full rounded-2xl p-8 transition-all duration-500 hover:shadow-glow">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-royal/15 text-electric transition-all duration-500 group-hover:bg-royal group-hover:text-white group-hover:shadow-glow">
+                      <Icon size={22} />
+                    </span>
+                    <h3 className="mt-6 font-display text-2xl font-semibold uppercase text-white">{format.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ash">{format.text}</p>
                   </div>
                 </Reveal>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        </section>
+        </Container>
+      </section>
 
-        <section className="border-t border-ink-border bg-ink-card py-16 md:py-24">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <SplitTitle text="Форматы сотрудничества" as="h2" className="text-display mb-12 text-3xl text-white md:text-5xl" />
-            <div className="grid gap-6 md:grid-cols-2">
-              {partnerFormats.map((format, index) => (
-                <Reveal key={format.title} delay={(index % 2) * 0.08}>
-                  <div className="card-gradient h-full border border-ink-border p-8">
-                    <span className="text-xs uppercase tracking-[0.3em] text-gold">Пакет</span>
-                    <h3 className="mt-4 font-display text-3xl text-white">{format.title}</h3>
-                    <p className="mt-4 leading-relaxed text-ash">{format.text}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+      {/* Слоты логотипов */}
+      <section className="border-t border-electric/10 bg-navy-900 py-16 md:py-20">
+        <Container>
+          <SectionHeader
+            eyebrow="Партнеры клуба"
+            title="Здесь может быть ваш бренд"
+          />
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+            {partnerSlots.map((slot, index) => (
+              <Reveal key={`${slot.title}-${index}`} delay={index * 0.06}>
+                <div className="glass-card flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-2xl border-dashed transition-all duration-500 hover:shadow-glow">
+                  <span className="font-display text-lg font-semibold uppercase text-white/35">{slot.title}</span>
+                  <span className="font-heading text-[10px] uppercase tracking-[0.2em] text-electric/60">
+                    {slot.status}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
           </div>
-        </section>
+        </Container>
+      </section>
 
-        <section className="border-t border-ink-border py-16 md:py-24">
-          <div className="mx-auto grid max-w-[1440px] gap-12 px-5 md:px-10 lg:grid-cols-[0.8fr,1.2fr]">
-            <div className="space-y-6">
-              {partnerSlots.map((slot, index) => (
-                <Reveal key={slot.title} delay={index * 0.08}>
-                  <div className="card-gradient border border-ink-border p-6">
-                    <p className="text-xs uppercase tracking-[0.3em] text-gold">{slot.title}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-ash">{slot.status}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal delay={0.15}>
-              <div className="card-gradient border border-ink-border p-8 md:p-10">
-                <h2 className="mb-6 font-display text-2xl text-white">Запрос на партнерство</h2>
+      {/* Форма запроса */}
+      <section id="partner-form" className="grain-overlay relative overflow-hidden bg-club-gradient py-16 md:py-28">
+        <Container className="relative">
+          <div className="mx-auto max-w-3xl">
+            <Reveal>
+              <div className="glass-card rounded-3xl p-8 md:p-12">
+                <h2 className="text-display text-3xl uppercase text-white md:text-4xl">
+                  Запрос на партнерство
+                </h2>
+                <p className="mt-3 text-ash">
+                  Оставьте контакты — коммерческая команда клуба вернется с предложением под ваш бренд.
+                </p>
                 {sent ? (
-                  <div className="py-12 text-center">
-                    <p className="font-display text-xl text-white">Запрос принят</p>
-                    <p className="mt-2 text-sm text-ash">Дальше можно подключить реальную отправку в CRM или на email клуба.</p>
+                  <div className="py-14 text-center">
+                    <div className="accent-glow mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-royal">
+                      <Check className="text-white" size={24} />
+                    </div>
+                    <p className="font-display text-2xl uppercase text-white">Запрос принят</p>
+                    <p className="mt-2 text-sm text-ash">Мы свяжемся с вами в ближайшее время.</p>
                   </div>
                 ) : (
-                  <form onSubmit={(event) => { event.preventDefault(); setSent(true); }} className="space-y-5">
+                  <form onSubmit={(event) => { event.preventDefault(); setSent(true); }} className="mt-8 space-y-5">
                     <div className="grid gap-5 sm:grid-cols-2">
                       <div>
-                        <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Имя</label>
-                        <input required className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                        <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Имя</label>
+                        <input required className={inputClasses} placeholder="Ваше имя" />
                       </div>
                       <div>
-                        <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Компания</label>
-                        <input required className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                        <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Компания</label>
+                        <input required className={inputClasses} placeholder="Название бренда" />
                       </div>
                     </div>
                     <div className="grid gap-5 sm:grid-cols-2">
                       <div>
-                        <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Email</label>
-                        <input required type="email" className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                        <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Email</label>
+                        <input required type="email" className={inputClasses} placeholder="you@brand.com" />
                       </div>
                       <div>
-                        <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Телефон</label>
-                        <input className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                        <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Телефон</label>
+                        <input className={inputClasses} placeholder="+996 ..." />
                       </div>
                     </div>
                     <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Формат сотрудничества</label>
-                      <input className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" placeholder="Например: партнер матча или видео-партнер" />
+                      <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Формат сотрудничества</label>
+                      <input className={inputClasses} placeholder="Например: логотип на форме или интеграции в Reels" />
                     </div>
                     <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Комментарий</label>
-                      <textarea required rows={5} className="w-full resize-none border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                      <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Комментарий</label>
+                      <textarea required rows={5} className={`${inputClasses} resize-none`} placeholder="Расскажите о задачах бренда" />
                     </div>
-                    <button className="accent-glow accent-glow-hover inline-flex w-full items-center justify-center gap-2 bg-gold px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-gold-light">
-                      Отправить запрос
-                    </button>
+                    <Button className="w-full">Отправить запрос</Button>
                   </form>
                 )}
               </div>
             </Reveal>
           </div>
-        </section>
-      </div>
+        </Container>
+      </section>
     </SiteShell>
   );
 }

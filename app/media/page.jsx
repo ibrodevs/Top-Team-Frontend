@@ -1,69 +1,100 @@
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import SiteShell from "../../components/layout/SiteShell";
+import MediaCard from "../../components/shared/MediaCard";
 import Reveal from "../../components/shared/Reveal";
-import SplitTitle from "../../components/shared/SplitTitle";
-import { mediaItems, socialLinks } from "../../data/siteData";
+import Container from "../../components/ui/Container";
+import PageHero from "../../components/ui/PageHero";
+import SectionHeader from "../../components/ui/SectionHeader";
+import { mediaCategories, mediaItems, socialLinks } from "../../data/siteData";
 
 export default function Page() {
+  const [activeCategory, setActiveCategory] = useState("Все");
+  const filteredItems =
+    activeCategory === "Все" ? mediaItems : mediaItems.filter((item) => item.type === activeCategory);
+
   return (
     <SiteShell>
-      <div className="min-h-screen bg-ink pt-20 md:pt-24">
-        <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Медиа</span>
-            <SplitTitle text="Контентная площадка Top Team KG" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,7rem)] text-white" />
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ash">
-              Для медиа-футбольного клуба медиа-раздел должен быть одним из главных. Здесь собраны ключевые форматы: Reels, YouTube, фотоархив и backstage.
-            </p>
-          </div>
-        </section>
+      <PageHero
+        eyebrow="Медиа"
+        title="Контент, который двигает клуб"
+        description="Reels, хайлайты, интервью и backstage. Top Team — там, где футбол становится контентом, а болельщики — частью команды."
+      />
 
-        <section className="border-t border-ink-border py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {mediaItems.map((item, index) => (
-                <Reveal key={item.id} delay={(index % 4) * 0.08}>
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="group block"
-                  >
-                    <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
-                      <img src={item.image_url} alt={item.title} className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
-                      <span className="absolute left-3 top-3 bg-ink/70 px-2.5 py-1 text-[10px] uppercase tracking-wider text-gold backdrop-blur-sm">{item.type}</span>
-                      <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <h2 className="font-display text-2xl text-white transition-colors group-hover:text-gold">{item.title}</h2>
-                      </div>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-ash">{item.description}</p>
-                    <p className="mt-3 font-heading text-xs uppercase tracking-[0.2em] text-gold">{item.link_label}</p>
-                  </a>
+      {/* Категории */}
+      <section className="sticky top-14 z-30 border-b border-electric/10 bg-navy-950/90 py-5 backdrop-blur-xl md:top-16">
+        <div className="no-scrollbar mx-auto flex max-w-site items-center gap-2.5 overflow-x-auto px-5 md:px-10">
+          {mediaCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`whitespace-nowrap rounded-full border px-5 py-2 font-heading text-xs font-medium uppercase tracking-wide transition-all duration-300 ${
+                activeCategory === category
+                  ? "border-royal bg-royal text-white shadow-glow"
+                  : "border-white/12 text-ash hover:border-electric/40 hover:text-white"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Masonry-сетка: вертикальные Reels + горизонтальные хайлайты */}
+      <section className="relative bg-navy-900 py-14 md:py-20">
+        <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-96" />
+        <Container className="relative">
+          {filteredItems.length === 0 ? (
+            <div className="py-24 text-center text-ash">Контента в этой категории пока нет.</div>
+          ) : (
+            <div className="columns-1 gap-5 sm:columns-2 xl:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
+              {filteredItems.map((item, index) => (
+                <Reveal key={item.id} delay={(index % 3) * 0.06}>
+                  <MediaCard item={item} />
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
+          )}
+        </Container>
+      </section>
 
-        <section className="border-t border-ink-border bg-ink-card py-16 pb-32 md:py-24">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <SplitTitle text="Основные платформы" as="h2" className="text-display mb-12 text-3xl text-white md:text-5xl" />
-            <div className="grid gap-6 md:grid-cols-2">
-              {socialLinks.map((item, index) => (
-                <Reveal key={item.label} delay={index * 0.08}>
-                  <a href={item.href} target="_blank" rel="noreferrer" className="card-gradient block border border-ink-border p-8 transition-colors hover:border-gold/30">
-                    <p className="text-xs uppercase tracking-[0.3em] text-gold">{item.label}</p>
-                    <h3 className="mt-4 font-display text-3xl text-white">{item.caption}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ash">
-                      Используем как внешний трафик-канал для матчей, хайлайтов, интервью и короткого вертикального контента.
-                    </p>
-                  </a>
-                </Reveal>
-              ))}
-            </div>
+      {/* Платформы */}
+      <section className="relative border-t border-electric/10 bg-navy-950 py-16 md:py-24">
+        <div className="stadium-glow-bottom pointer-events-none absolute inset-0" />
+        <Container className="relative">
+          <SectionHeader
+            eyebrow="Платформы"
+            title="Где смотреть Top Team"
+          />
+          <div className="grid gap-5 md:grid-cols-3">
+            {socialLinks.map((item, index) => (
+              <Reveal key={item.label} delay={index * 0.08}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="glass-card group flex h-full flex-col rounded-2xl p-8 transition-all duration-500 hover:shadow-glow"
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="font-heading text-[11px] uppercase tracking-[0.25em] text-electric">
+                      {item.label}
+                    </span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-all duration-500 group-hover:border-electric group-hover:bg-royal">
+                      <ArrowUpRight size={16} />
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-3xl font-semibold text-white transition-colors group-hover:text-electric">
+                    {item.caption}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ash">{item.description}</p>
+                </a>
+              </Reveal>
+            ))}
           </div>
-        </section>
-      </div>
+        </Container>
+      </section>
     </SiteShell>
   );
 }

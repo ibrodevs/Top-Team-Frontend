@@ -1,12 +1,16 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Top Team KG - медиа-футбольный клуб Кыргызстана",
+  title: "Top Team KG — больше чем игра. Медиа-футбольный клуб Кыргызстана",
   description:
-    "Официальный сайт Top Team KG: состав команды, матчи, достижения, новости, медиа и партнерство.",
+    "Официальная цифровая платформа Top Team KG: матч-центр, состав команды, новости, медиа-контент и партнерская программа медиа-футбольного клуба Кыргызстана.",
   icons: {
     icon: "/logo.png",
   },
+};
+
+export const viewport = {
+  themeColor: "#060D1F",
 };
 
 export default function RootLayout({ children }) {

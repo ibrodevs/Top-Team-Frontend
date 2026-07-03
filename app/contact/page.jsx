@@ -1,113 +1,124 @@
 "use client";
 
-import { Camera, Check, Clock3, Globe, Phone } from "lucide-react";
+import { ArrowUpRight, Camera, Check, CirclePlay, Handshake, Mail } from "lucide-react";
 import { useState } from "react";
 import SiteShell from "../../components/layout/SiteShell";
 import Reveal from "../../components/shared/Reveal";
-import SplitTitle from "../../components/shared/SplitTitle";
+import Button from "../../components/ui/Button";
+import Container from "../../components/ui/Container";
+import PageHero from "../../components/ui/PageHero";
 import { contactCards, contactTopics } from "../../data/siteData";
 
 const iconMap = {
   Instagram: Camera,
-  YouTube: Globe,
-  Email: Globe,
-  "Телефон / WhatsApp": Phone,
+  YouTube: CirclePlay,
+  Email: Mail,
+  "Партнерства": Handshake,
 };
+
+const inputClasses =
+  "w-full rounded-xl border border-white/12 bg-navy-950/60 px-4 py-3 text-white outline-none transition-all duration-300 placeholder:text-ash/50 focus:border-electric focus:shadow-glow";
 
 export default function Page() {
   const [sent, setSent] = useState(false);
 
   return (
     <SiteShell>
-      <div className="min-h-screen bg-ink pt-20 md:pt-24">
-        <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Контакты</span>
-            <SplitTitle text="Связь с Top Team KG" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,7rem)] text-white" />
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ash">
-              По документу важно убрать фейковые контакты. Поэтому здесь остаются только подтвержденные точки входа и форма, которую позже можно подключить к реальной отправке.
-            </p>
-          </div>
-        </section>
-        <section className="py-12 pb-32 md:py-20">
-          <div className="mx-auto grid max-w-[1440px] gap-12 px-5 md:px-10 lg:grid-cols-2">
+      <PageHero
+        eyebrow="Контакты"
+        title="Свяжись с Top Team"
+        description="Партнерства, медиа, матчи или просто поддержка команды — напиши нам, мы на связи."
+      />
+
+      <section className="relative bg-navy-900 py-14 md:py-24">
+        <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-96" />
+        <Container className="relative">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:gap-14">
             <div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {contactCards.map((item, index) => {
-                  const Icon = iconMap[item.label] || Globe;
-                  const content = item.href ? (
-                    <a href={item.href} target="_blank" rel="noreferrer" className="text-white transition-colors hover:text-gold">{item.value}</a>
-                  ) : (
-                    <p className="text-white">{item.value}</p>
-                  );
+                  const Icon = iconMap[item.label] || Mail;
                   return (
-                    <Reveal key={item.label} delay={index * 0.08}>
-                      <div className="card-gradient h-full border border-ink-border p-6">
-                        <Icon className="mb-3 text-gold" size={20} />
-                        <h3 className="mb-1 font-heading text-xs uppercase tracking-wide text-ash">{item.label}</h3>
-                        {content}
-                      </div>
+                    <Reveal key={item.label} delay={index * 0.06}>
+                      <a
+                        href={item.href}
+                        target={item.href?.startsWith("http") ? "_blank" : undefined}
+                        rel={item.href?.startsWith("http") ? "noreferrer" : undefined}
+                        className="glass-card group flex h-full flex-col rounded-2xl p-6 transition-all duration-500 hover:shadow-glow"
+                      >
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-royal/15 text-electric transition-all duration-500 group-hover:bg-royal group-hover:text-white">
+                          <Icon size={19} />
+                        </span>
+                        <h3 className="mt-4 font-heading text-[11px] uppercase tracking-[0.2em] text-ash">
+                          {item.label}
+                        </h3>
+                        <p className="mt-1.5 flex items-center gap-1.5 font-medium text-white transition-colors group-hover:text-electric">
+                          {item.value}
+                          <ArrowUpRight size={13} className="opacity-0 transition-opacity group-hover:opacity-100" />
+                        </p>
+                      </a>
                     </Reveal>
                   );
                 })}
               </div>
-              <Reveal delay={0.3}>
-                <div className="card-gradient mt-6 border border-ink-border p-8">
-                  <div className="mb-4 flex items-center gap-3 text-gold">
-                    <Clock3 size={18} />
-                    <span className="font-heading text-xs uppercase tracking-[0.2em]">Что еще нужно запросить у клуба</span>
-                  </div>
-                  <p className="text-sm leading-relaxed text-ash">
-                    Официальный email, телефон, ответственный менеджер, Telegram или WhatsApp, а также необходимость публиковать карту или адрес офиса.
+              <Reveal delay={0.25}>
+                <div className="animated-border mt-6 rounded-2xl p-8">
+                  <h3 className="font-display text-2xl font-semibold uppercase text-white">
+                    Быстрее всего — Instagram
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ash">
+                    Клуб живет в соцсетях: анонсы матчей, контент и обратная связь. Напиши в Direct — ответим быстро.
                   </p>
+                  <Button href="https://www.instagram.com/topteam.kg/" size="md" className="mt-5" external>
+                    @topteam.kg <ArrowUpRight size={13} />
+                  </Button>
                 </div>
               </Reveal>
             </div>
+
             <Reveal delay={0.15}>
-              <div className="card-gradient border border-ink-border p-8 md:p-10">
-                <h2 className="mb-6 font-display text-2xl text-white">Форма связи</h2>
+              <div className="glass-card rounded-3xl p-8 md:p-10">
+                <h2 className="text-display text-3xl uppercase text-white">Форма связи</h2>
                 {sent ? (
-                  <div className="py-12 text-center">
-                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold/20">
-                      <Check className="text-gold" size={22} />
+                  <div className="py-14 text-center">
+                    <div className="accent-glow mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-royal">
+                      <Check className="text-white" size={24} />
                     </div>
-                    <p className="font-display text-xl text-white">Сообщение отправлено</p>
-                    <p className="mt-2 text-sm text-ash">Форму можно подключить к почте клуба после получения официальных контактов.</p>
+                    <p className="font-display text-2xl uppercase text-white">Сообщение отправлено</p>
+                    <p className="mt-2 text-sm text-ash">Спасибо! Мы ответим в ближайшее время.</p>
                   </div>
                 ) : (
-                  <form onSubmit={(event) => { event.preventDefault(); setSent(true); }} className="space-y-5">
+                  <form onSubmit={(event) => { event.preventDefault(); setSent(true); }} className="mt-7 space-y-5">
                     <div className="grid gap-5 sm:grid-cols-2">
                       <div>
-                        <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Имя</label>
-                        <input required className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                        <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Имя</label>
+                        <input required className={inputClasses} placeholder="Ваше имя" />
                       </div>
                       <div>
-                        <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Email</label>
-                        <input required type="email" className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                        <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Email</label>
+                        <input required type="email" className={inputClasses} placeholder="you@mail.com" />
                       </div>
                     </div>
                     <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Тема обращения</label>
-                      <select className="w-full border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold">
+                      <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Тема обращения</label>
+                      <select className={inputClasses}>
                         {contactTopics.map((topic) => (
                           <option key={topic}>{topic}</option>
                         ))}
                       </select>
                     </div>
                     <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wide text-ash">Сообщение</label>
-                      <textarea required rows={5} className="w-full resize-none border border-ink-border bg-ink px-4 py-3 text-white outline-none transition-colors focus:border-gold" />
+                      <label className="mb-2 block font-heading text-xs uppercase tracking-wide text-ash">Сообщение</label>
+                      <textarea required rows={5} className={`${inputClasses} resize-none`} placeholder="Ваше сообщение" />
                     </div>
-                    <button className="accent-glow accent-glow-hover inline-flex w-full items-center justify-center gap-2 bg-gold px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-gold-light">
-                      Отправить
-                    </button>
+                    <Button className="w-full">Отправить</Button>
                   </form>
                 )}
               </div>
             </Reveal>
           </div>
-        </section>
-      </div>
+        </Container>
+      </section>
     </SiteShell>
   );
 }

@@ -2,270 +2,453 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Camera, Shield, Trophy, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Flame, Play, Shield, Trophy, Users } from "lucide-react";
 import SiteShell from "../components/layout/SiteShell";
-import CountUp from "../components/shared/CountUp";
 import MatchCard from "../components/shared/MatchCard";
+import MediaCard from "../components/shared/MediaCard";
+import NewsCard from "../components/shared/NewsCard";
+import PlayerCard from "../components/shared/PlayerCard";
 import Reveal from "../components/shared/Reveal";
 import SplitTitle from "../components/shared/SplitTitle";
+import StatCard from "../components/shared/StatCard";
+import Badge from "../components/ui/Badge";
+import Button from "../components/ui/Button";
+import Container from "../components/ui/Container";
+import SectionHeader from "../components/ui/SectionHeader";
 import {
-  getFeaturedMatch,
+  aboutPillars,
+  clubQuote,
+  communityBlock,
+  getLatestFinishedMatch,
   getLatestNews,
+  getNextMatch,
   homeHero,
   homeStats,
   mediaItems,
   players,
+  socialLinks,
 } from "../data/siteData";
 
-const heroImage = "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1920&q=80&auto=format&fit=crop";
-const quoteImage = "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80&auto=format&fit=crop";
+const heroImage = "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1920&q=80&auto=format&fit=crop";
+const quoteImage = "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1920&q=80&auto=format&fit=crop";
+
+const pillarIcons = { trophy: Trophy, play: Play, users: Users, flame: Flame };
 
 export default function Page() {
   const reduceMotion = useReducedMotion();
-  const featuredMatch = getFeaturedMatch();
-  const latestNews = getLatestNews(3);
-  const featuredPlayers = players.slice(0, 6);
+  const lastMatch = getLatestFinishedMatch();
+  const nextMatch = getNextMatch();
+  const latestNews = getLatestNews(4);
+  const featuredPlayers = players.slice(0, 4);
+  const featuredMedia = mediaItems.slice(0, 4);
+
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 800], reduceMotion ? [0, 0] : [0, 400]);
-  const contentY = useTransform(scrollY, [0, 600], reduceMotion ? [0, 0] : [0, 200]);
-  const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const quoteY = useTransform(scrollY, [600, 1600], reduceMotion ? [0, 0] : [0, -200]);
-  const quoteScale = useTransform(scrollY, [600, 1600], [1, 1.1]);
+  const heroY = useTransform(scrollY, [0, 800], reduceMotion ? [0, 0] : [0, 320]);
+  const contentY = useTransform(scrollY, [0, 600], reduceMotion ? [0, 0] : [0, 160]);
+  const contentOpacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const quoteY = useTransform(scrollY, [600, 2000], reduceMotion ? [0, 0] : [0, -160]);
+  const quoteScale = useTransform(scrollY, [600, 2000], [1, 1.12]);
 
   return (
     <SiteShell>
-      <section className="grain-overlay relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink">
+      {/* ============ HERO ============ */}
+      <section className="grain-overlay relative min-h-[100svh] w-full overflow-hidden bg-navy-950">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
           <motion.img
             src={heroImage}
-            alt="Top Team KG"
+            alt="Top Team KG — стадион"
             className="h-full w-full object-cover"
             initial={{ scale: 1, opacity: 0 }}
             animate={{ scale: reduceMotion ? 1 : 1.08, opacity: 1 }}
-            transition={{ scale: { duration: 18, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }, opacity: { duration: 1, delay: 0.6 } }}
+            transition={{
+              scale: { duration: 20, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" },
+              opacity: { duration: 1.2, delay: 0.4 },
+            }}
           />
         </motion.div>
         <div className="hero-gradient absolute inset-0 z-10" />
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
-        <motion.div className="relative z-20 mx-auto flex h-full max-w-[1440px] flex-col justify-end px-5 pb-16 md:px-10 md:pb-24" style={{ y: contentY, opacity: contentOpacity }}>
-          <div className="overflow-hidden">
-            <motion.h1 className="text-display text-[clamp(2.5rem,10vw,9rem)] uppercase text-white" initial="hidden" animate="visible" transition={{ staggerChildren: 0.06, delayChildren: 1.4 }}>
-              {homeHero.title.split(" ").map((word) => (
-                <span key={word} className="mr-3 inline-block overflow-hidden align-top md:mr-6">
-                  <motion.span className="inline-block" variants={{ hidden: { y: "110%", opacity: 0 }, visible: { y: 0, opacity: 1 } }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-                    {word}
-                  </motion.span>
-                </span>
-              ))}
-            </motion.h1>
-          </div>
-          <div className="mt-2 overflow-hidden">
-            <motion.p className="font-display text-[clamp(1.5rem,5vw,3.5rem)] uppercase tracking-tight text-gold" initial={{ y: "110%", opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.7 }}>
-              {homeHero.accent}
-            </motion.p>
-          </div>
-          <motion.p className="mt-6 max-w-xl text-base leading-relaxed text-ash md:text-lg" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 2 }}>
-            {homeHero.subtitle}
-          </motion.p>
-          <motion.div className="mt-8 flex flex-col gap-4 sm:flex-row" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 2.2 }}>
-            <Link href={homeHero.primaryCta.href} className="accent-glow accent-glow-hover inline-flex items-center justify-center gap-2 bg-gold px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-gold-light">
-              <Trophy size={16} />
-              {homeHero.primaryCta.label}
-            </Link>
-            <Link href={homeHero.secondaryCta.href} className="inline-flex items-center justify-center gap-2 border border-ink-border px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:border-gold hover:text-gold">
-              <Users size={16} />
-              {homeHero.secondaryCta.label}
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-navy-950/85 via-navy-950/30 to-transparent" />
 
-      <section className="relative overflow-hidden bg-ink py-24 md:py-40">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <SplitTitle text="Футбол. Медиа. Команда. Победа." as="h2" className="text-display max-w-5xl text-[clamp(1.75rem,5.5vw,4.5rem)] text-white" />
-          <Reveal delay={0.3}>
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ash">
-              Top Team KG - это футбольный медиа-проект, созданный для побед, эмоций и развития футбольной культуры. Команда объединяет игроков, медийных личностей и болельщиков, превращая каждый матч в событие.
-            </p>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <Link href="/club" className="mt-8 inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-gold transition-all hover:gap-4">
-              История клуба <ArrowRight size={16} />
-            </Link>
-          </Reveal>
+        <div className="relative z-20 mx-auto flex min-h-[100svh] max-w-site flex-col justify-end px-5 pb-10 pt-28 md:px-10 md:pb-16">
+          <motion.div style={{ y: contentY, opacity: contentOpacity }}>
+            <motion.div
+              className="mb-6 flex flex-wrap items-center gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <Badge variant="accent">
+                <span className="live-dot h-1.5 w-1.5 rounded-full bg-electric" />
+                Media Football Club
+              </Badge>
+              <Badge variant="outline">Kyrgyzstan</Badge>
+            </motion.div>
+
+            <div className="overflow-hidden">
+              <motion.h1
+                className="text-display max-w-5xl text-[clamp(2.75rem,10vw,8.5rem)] uppercase text-white"
+                initial="hidden"
+                animate="visible"
+                transition={{ staggerChildren: 0.06, delayChildren: 1.2 }}
+              >
+                {homeHero.title.split(" ").map((word) => (
+                  <span key={word} className="mr-3 inline-block overflow-hidden align-top md:mr-6">
+                    <motion.span
+                      className="inline-block"
+                      variants={{ hidden: { y: "110%", opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                ))}
+              </motion.h1>
+            </div>
+            <div className="mt-2 overflow-hidden">
+              <motion.p
+                className="gradient-text font-display text-[clamp(1.5rem,5vw,3.5rem)] font-semibold uppercase tracking-tight"
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.55 }}
+              >
+                {homeHero.accent}
+              </motion.p>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-xl">
+                <motion.p
+                  className="text-base leading-relaxed text-electric-soft/80 md:text-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.85 }}
+                >
+                  {homeHero.subtitle}
+                </motion.p>
+                <motion.div
+                  className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 2.05 }}
+                >
+                  <Button href={homeHero.primaryCta.href}>
+                    <Play size={15} className="fill-current" />
+                    {homeHero.primaryCta.label}
+                  </Button>
+                  <Button href={homeHero.secondaryCta.href} variant="secondary">
+                    <Users size={15} />
+                    {homeHero.secondaryCta.label}
+                  </Button>
+                  <Button href={homeHero.tertiaryCta.href} variant="secondary">
+                    {homeHero.tertiaryCta.label}
+                    <ArrowUpRight size={15} />
+                  </Button>
+                </motion.div>
+              </div>
+
+              {/* Виджет матч-центра в hero */}
+              {(nextMatch || lastMatch) && (
+                <motion.div
+                  className="w-full max-w-md lg:shrink-0"
+                  initial={{ opacity: 0, y: 32 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, delay: 2.2, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="font-heading text-[11px] uppercase tracking-[0.3em] text-electric">
+                      {nextMatch ? "Следующий матч" : "Последний матч"}
+                    </span>
+                    <Link
+                      href="/fixtures"
+                      className="group inline-flex items-center gap-1.5 font-heading text-[11px] uppercase tracking-[0.2em] text-ash transition-colors hover:text-electric"
+                    >
+                      Матч-центр
+                      <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
+                  <MatchCard match={nextMatch || lastMatch} featured />
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* ============ О КЛУБЕ ============ */}
+      <section className="pitch-lines relative overflow-hidden bg-navy-900 py-24 md:py-36">
+        <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-96" />
+        <Container className="relative">
+          <SectionHeader
+            eyebrow="О клубе"
+            title="Футбол. Медиа. Команда. Победа."
+            description="Top Team KG — команда, которая превращает матч в событие. Мы играем, снимаем, побеждаем и собираем вокруг клуба новую футбольную культуру Кыргызстана."
+            ctaLabel="История клуба"
+            ctaHref="/club"
+          />
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {aboutPillars.map((pillar, index) => {
+              const Icon = pillarIcons[pillar.icon] || Trophy;
+              return (
+                <Reveal key={pillar.title} delay={index * 0.08}>
+                  <div className="glass-card group relative h-full overflow-hidden rounded-2xl p-7 transition-all duration-500 hover:shadow-glow md:p-8">
+                    <span className="pointer-events-none absolute -right-4 -top-8 font-display text-8xl font-bold text-electric/5 transition-colors duration-500 group-hover:text-electric/10">
+                      0{index + 1}
+                    </span>
+                    <div className="relative">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-royal/15 text-electric transition-all duration-500 group-hover:bg-royal group-hover:text-white group-hover:shadow-glow">
+                        <Icon size={22} />
+                      </span>
+                      <h3 className="mt-6 font-display text-2xl font-semibold uppercase text-white">
+                        {pillar.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-ash">{pillar.text}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* ============ ЦИТАТА ============ */}
       <section className="relative h-[70vh] min-h-[480px] overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: quoteY, scale: quoteScale }}>
-          <img src={quoteImage} alt="Атмосфера клуба" className="h-full w-full object-cover" />
+          <img src={quoteImage} alt="Атмосфера Top Team KG" className="h-full w-full object-cover" />
         </motion.div>
-        <div className="absolute inset-0 bg-ink/70" />
+        <div className="absolute inset-0 bg-navy-950/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950/60" />
+        <div className="stadium-glow absolute inset-0" />
         <div className="relative flex h-full items-center justify-center px-5">
-          <Reveal className="max-w-3xl text-center">
-            <Shield className="mx-auto mb-6 text-gold" size={32} />
-            <p className="text-display text-[clamp(1.5rem,4vw,3rem)] leading-tight text-white">«Мы не играем, чтобы участвовать. Мы играем, чтобы побеждать.»</p>
-            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-ash">Позиционирование Top Team KG</p>
+          <Reveal className="max-w-4xl text-center">
+            <Shield className="mx-auto mb-8 text-electric" size={36} />
+            <p className="text-display text-[clamp(1.75rem,5vw,3.75rem)] uppercase leading-tight text-white">
+              «{clubQuote.text}»
+            </p>
+            <p className="mt-8 font-heading text-xs uppercase tracking-[0.4em] text-electric">
+              {clubQuote.caption}
+            </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="border-y border-ink-border bg-ink-card py-20 md:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
+      {/* ============ СТАТИСТИКА ============ */}
+      <section className="relative border-y border-electric/10 bg-navy-950 py-20 md:py-28">
+        <div className="stadium-glow-bottom pointer-events-none absolute inset-0" />
+        <Container className="relative">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {homeStats.map((stat, index) => (
-              <Reveal key={stat.label} delay={index * 0.1} className="text-center md:text-left">
-                <Trophy className="mx-auto mb-6 text-gold md:mx-0" size={28} />
-                <CountUp value={stat.value} className="font-display block text-6xl font-bold text-white md:text-7xl" />
-                <p className="mt-3 text-sm uppercase tracking-wide text-ash">{stat.label}</p>
-                <p className="mt-2 max-w-xs text-sm leading-relaxed text-ash/80">{stat.note}</p>
-              </Reveal>
+              <StatCard key={stat.label} stat={stat} index={index} />
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      <section className="bg-ink py-24 md:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <div>
-              <span className="text-xs uppercase tracking-[0.3em] text-gold">Матч-центр</span>
-              <SplitTitle text="Последний подтвержденный матч" as="h2" className="text-display mt-3 text-4xl text-white md:text-6xl" />
-            </div>
-            <Link href="/fixtures" className="hidden items-center gap-2 font-heading text-sm uppercase tracking-wide text-ash transition-colors hover:text-gold md:inline-flex">
-              Все матчи <ArrowRight size={16} />
-            </Link>
+      {/* ============ МАТЧ-ЦЕНТР ============ */}
+      <section className="relative bg-navy-900 py-24 md:py-32">
+        <Container>
+          <SectionHeader
+            eyebrow="Матч-центр"
+            title="Каждый матч — событие"
+            description="Результаты, ближайшие игры и путь команды по турнирам."
+            ctaLabel="Все матчи"
+            ctaHref="/fixtures"
+          />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {nextMatch && (
+              <Reveal>
+                <MatchCard match={nextMatch} featured />
+              </Reveal>
+            )}
+            {lastMatch && (
+              <Reveal delay={0.1}>
+                <MatchCard match={lastMatch} featured />
+              </Reveal>
+            )}
           </div>
-          {featuredMatch ? (
-            <div className="max-w-xl">
-              <MatchCard match={featuredMatch} />
-            </div>
-          ) : (
-            <div className="card-gradient border border-ink-border p-10 text-center text-ash">Подтвержденные матчи скоро будут опубликованы.</div>
-          )}
-        </div>
+          <Reveal delay={0.2} className="mt-8 text-center md:hidden">
+            <Button href="/fixtures" variant="secondary" size="md">
+              Все матчи <ArrowRight size={14} />
+            </Button>
+          </Reveal>
+        </Container>
       </section>
 
-      <section className="border-t border-ink-border bg-ink-card py-24 md:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <div>
-              <span className="text-xs uppercase tracking-[0.3em] text-gold">Состав</span>
-              <SplitTitle text="Лица Top Team KG" as="h2" className="text-display mt-3 text-4xl text-white md:text-6xl" />
-            </div>
-            <Link href="/squad" className="hidden items-center gap-2 font-heading text-sm uppercase tracking-wide text-ash transition-colors hover:text-gold md:inline-flex">
-              Весь состав <ArrowRight size={16} />
-            </Link>
-          </div>
-          <div className="mb-8 max-w-2xl text-lg leading-relaxed text-ash">
-            Игроки и медиа-персоны собраны по открытым источникам и помечены как требующие подтверждения, пока клуб не передаст финальный roster.
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {/* ============ СОСТАВ ============ */}
+      <section className="relative overflow-hidden border-t border-electric/10 bg-navy-950 py-24 md:py-32">
+        <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-96" />
+        <Container className="relative">
+          <SectionHeader
+            eyebrow="Состав"
+            title="Лица Top Team"
+            description="Игроки и медиа-персоны, которые каждую неделю создают историю клуба."
+            ctaLabel="Весь состав"
+            ctaHref="/squad"
+          />
+        </Container>
+        <div className="no-scrollbar overflow-x-auto pb-2">
+          <div className="mx-auto flex max-w-site gap-5 px-5 md:grid md:grid-cols-2 md:px-10 xl:grid-cols-4">
             {featuredPlayers.map((player, index) => (
-              <Reveal key={player.id} delay={(index % 3) * 0.08}>
-                <Link href={`/squad/${player.id}`} className="group block">
-                  <div className="card-gradient relative overflow-hidden border border-ink-border p-6 transition-colors hover:border-gold/30">
-                    <span className="absolute -right-3 -top-6 font-display text-8xl text-gold/10">{String(index + 1).padStart(2, "0")}</span>
-                    <div className="mb-8 flex items-start justify-between gap-4">
-                      <span className="font-display text-4xl font-bold text-gold">{player.number ?? "--"}</span>
-                      <span className="border border-gold/20 bg-gold/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-gold">
-                        {player.status}
-                      </span>
-                    </div>
-                    <div className="rounded-2xl border border-ink-border bg-ink/40 p-5">
-                      <img src="/logo.png" alt="" className="mb-5 h-12 w-12 object-contain opacity-70" />
-                      <p className="text-xs uppercase tracking-[0.2em] text-ash">{player.position}</p>
-                      <h3 className="mt-2 font-display text-2xl text-white transition-colors group-hover:text-gold">{player.name}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-ash">{player.role}</p>
-                    </div>
-                  </div>
-                </Link>
-              </Reveal>
+              <div key={player.id} className="w-[78vw] max-w-[320px] shrink-0 sm:w-[320px] md:w-auto md:max-w-none">
+                <Reveal delay={(index % 4) * 0.08} className="h-full">
+                  <PlayerCard player={player} index={index} />
+                </Reveal>
+              </div>
             ))}
           </div>
         </div>
+        <Container className="relative mt-10 text-center md:hidden">
+          <Button href="/squad" variant="secondary" size="md">
+            Весь состав <ArrowRight size={14} />
+          </Button>
+        </Container>
       </section>
 
-      <section className="border-t border-ink-border bg-ink py-24 md:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <div>
-              <span className="text-xs uppercase tracking-[0.3em] text-gold">Жизнь клуба</span>
-              <SplitTitle text="Последние новости" as="h2" className="text-display mt-3 text-4xl text-white md:text-6xl" />
-            </div>
-            <Link href="/news" className="hidden items-center gap-2 font-heading text-sm uppercase tracking-wide text-ash transition-colors hover:text-gold md:inline-flex">
-              Все новости <ArrowRight size={16} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {latestNews.map((article, index) => (
-              <Reveal key={article.id} delay={index * 0.08}>
-                <Link href={`/news/${article.id}`} className="group block">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
-                    <img src={article.cover_image_url} alt={article.title} className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" />
-                    <span className="absolute left-3 top-3 bg-ink/70 px-2.5 py-1 text-[10px] uppercase tracking-wider text-gold backdrop-blur-sm">{article.category}</span>
-                  </div>
-                  <h3 className="mt-4 line-clamp-2 font-display text-lg font-semibold leading-snug text-white transition-colors group-hover:text-gold">{article.title}</h3>
-                  <p className="mt-2 line-clamp-2 text-sm text-ash">{article.subtitle}</p>
-                </Link>
+      {/* ============ НОВОСТИ ============ */}
+      <section className="border-t border-electric/10 bg-navy-900 py-24 md:py-32">
+        <Container>
+          <SectionHeader
+            eyebrow="Новости"
+            title="Жизнь клуба"
+            description="Матчи, трансферы, медиа и все, что происходит внутри Top Team."
+            ctaLabel="Все новости"
+            ctaHref="/news"
+          />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {latestNews[0] && (
+              <Reveal className="h-full">
+                <NewsCard article={latestNews[0]} featured />
               </Reveal>
-            ))}
+            )}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              {latestNews.slice(1, 4).map((article, index) => (
+                <Reveal key={article.id} delay={index * 0.08} className={`h-full ${index === 2 ? "sm:col-span-2 lg:col-span-1 xl:col-span-2 xl:hidden" : ""}`}>
+                  <NewsCard article={article} />
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      <section className="border-t border-ink-border bg-ink-card py-24 md:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <div>
-              <span className="text-xs uppercase tracking-[0.3em] text-gold">Медиа</span>
-              <SplitTitle text="Контент, который двигает клуб" as="h2" className="text-display mt-3 text-4xl text-white md:text-6xl" />
-            </div>
-            <Link href="/media" className="hidden items-center gap-2 font-heading text-sm uppercase tracking-wide text-ash transition-colors hover:text-gold md:inline-flex">
-              Весь медиа-раздел <ArrowRight size={16} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {mediaItems.map((item, index) => (
-              <Reveal key={item.id} delay={(index % 4) * 0.08}>
-                <a
-                  href={item.href}
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="group block"
+      {/* ============ МЕДИА ============ */}
+      <section className="relative overflow-hidden border-t border-electric/10 bg-navy-950 py-24 md:py-32">
+        <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-96" />
+        <Container className="relative">
+          <SectionHeader
+            eyebrow="Медиа"
+            title="Контент, который двигает клуб"
+            description="Reels, хайлайты, интервью и backstage — вторая игра Top Team, которая не заканчивается финальным свистком."
+            ctaLabel="Весь медиа-раздел"
+            ctaHref="/media"
+          />
+        </Container>
+        <div className="no-scrollbar overflow-x-auto pb-2">
+          <div className="mx-auto flex max-w-site items-stretch gap-5 px-5 md:px-10">
+            {featuredMedia.map((item, index) => (
+              <div
+                key={item.id}
+                className={`shrink-0 ${item.format === "vertical" ? "w-[240px] md:w-[280px]" : "w-[340px] md:w-[460px]"}`}
+              >
+                <Reveal delay={(index % 4) * 0.08} className="h-full">
+                  <MediaCard item={item} />
+                </Reveal>
+              </div>
+            ))}
+            <div className="w-[200px] shrink-0 md:w-[240px]">
+              <Reveal delay={0.32} className="h-full">
+                <Link
+                  href="/media"
+                  className="glass-card group flex h-full min-h-[300px] flex-col items-center justify-center gap-4 rounded-2xl p-6 text-center transition-all duration-500 hover:shadow-glow"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-ink-soft">
-                    <img src={item.image_url} alt={item.title} className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
-                    <span className="absolute left-3 top-3 bg-ink/70 px-2.5 py-1 text-[10px] uppercase tracking-wider text-gold backdrop-blur-sm">{item.type}</span>
-                    <div className="absolute bottom-0 left-0 right-0 p-5">
-                      <Camera className="mb-3 text-gold" size={18} />
-                      <h3 className="font-display text-2xl text-white transition-colors group-hover:text-gold">{item.title}</h3>
-                    </div>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-ash">{item.description}</p>
-                </a>
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full border border-electric/30 text-electric transition-all duration-500 group-hover:scale-110 group-hover:bg-royal group-hover:text-white">
+                    <ArrowRight size={20} />
+                  </span>
+                  <span className="font-display text-xl font-semibold uppercase text-white">
+                    Весь контент
+                  </span>
+                </Link>
               </Reveal>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-ink py-24 md:py-40">
-        <div className="mx-auto max-w-[1440px] px-5 text-center md:px-10">
-          <SplitTitle text="Станьте партнером Top Team KG" as="h2" className="text-display mx-auto max-w-4xl text-[clamp(2rem,8vw,7rem)] text-white" />
+      {/* ============ ПАРТНЕРЫ CTA ============ */}
+      <section className="grain-overlay relative overflow-hidden bg-club-gradient py-24 md:py-40">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/50 to-transparent" />
+        <Container className="relative text-center">
+          <Reveal y={16}>
+            <Badge variant="outline" className="mb-6">Партнерство</Badge>
+          </Reveal>
+          <SplitTitle
+            text="Станьте частью Top Team KG"
+            as="h2"
+            className="text-display mx-auto max-w-4xl text-[clamp(2rem,7vw,6rem)] uppercase text-white"
+          />
           <Reveal delay={0.2}>
-            <p className="mx-auto mt-8 max-w-2xl text-lg text-ash">
-              Клубу нужен не просто спонсорский блок, а сильная коммерческая страница для брендов: спорт, медиа, молодежная аудитория и контентные интеграции.
+            <p className="mx-auto mt-8 max-w-2xl text-lg text-electric-soft/85">
+              Футбол, медиа, молодежная аудитория и живой контент — площадка для брендов,
+              которые хотят быть ближе к новой спортивной культуре.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href="/partners" className="accent-glow accent-glow-hover bg-gold px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-gold-light">Форматы сотрудничества</Link>
-              <Link href="/contact" className="border border-ink-border px-8 py-4 font-heading text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:border-gold hover:text-gold">Связаться с клубом</Link>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+              <Button href="/partners" className="bg-white text-navy-950 hover:bg-electric-soft hover:text-navy-950">
+                Получить партнерское предложение
+              </Button>
+              <Button href="/contact" variant="secondary">
+                Связаться с клубом
+              </Button>
             </div>
           </Reveal>
-        </div>
+        </Container>
+      </section>
+
+      {/* ============ КОМЬЮНИТИ ============ */}
+      <section className="relative border-t border-electric/10 bg-navy-950 py-24 md:py-32">
+        <div className="stadium-glow-bottom pointer-events-none absolute inset-0" />
+        <Container className="relative">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <SectionHeader
+                eyebrow={communityBlock.badge}
+                title={communityBlock.title}
+                description={communityBlock.text}
+                className="mb-8 md:mb-8"
+              />
+              <Button href={communityBlock.cta.href} external>
+                {communityBlock.cta.label}
+                <ArrowUpRight size={15} />
+              </Button>
+            </div>
+            <div className="grid gap-4">
+              {socialLinks.map((item, index) => (
+                <Reveal key={item.label} delay={index * 0.08}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="glass-card group flex items-center justify-between rounded-2xl p-6 transition-all duration-500 hover:shadow-glow"
+                  >
+                    <div>
+                      <p className="font-heading text-[11px] uppercase tracking-[0.25em] text-electric">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 font-display text-2xl font-semibold text-white transition-colors group-hover:text-electric">
+                        {item.caption}
+                      </p>
+                      <p className="mt-1 text-sm text-ash">{item.description}</p>
+                    </div>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition-all duration-500 group-hover:border-electric group-hover:bg-royal group-hover:shadow-glow">
+                      <ArrowUpRight size={17} />
+                    </span>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
       </section>
     </SiteShell>
   );

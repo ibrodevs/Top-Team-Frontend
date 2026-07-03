@@ -1,4 +1,4 @@
-// File: /Users/Apple/Desktop/projects/top-team-play-clone/app/partners/page.jsx
+// File: /Users/imac5/Desktop/projects/Top-Team-Frontend/app/partners/page.jsx
 import * as entry from '../../../../app/partners/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
