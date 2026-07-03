@@ -1,11 +1,3 @@
 {
-  "/squad/page": "app/squad/page.js",
-  "/squad/[id]/page": "app/squad/[id]/page.js",
-  "/fixtures/page": "app/fixtures/page.js",
-  "/news/page": "app/news/page.js",
-  "/media/page": "app/media/page.js",
-  "/partners/page": "app/partners/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/club/page": "app/club/page.js",
   "/page": "app/page.js"
 }

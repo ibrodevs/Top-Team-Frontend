@@ -1,4 +1,5 @@
 import "./globals.css";
+import SplashScreen from "../components/shared/SplashScreen";
 
 export const metadata = {
   title: "Top Team KG — больше чем игра. Медиа-футбольный клуб Кыргызстана",
@@ -23,7 +24,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <SplashScreen />
+        {children}
+      </body>
     </html>
   );
 }
