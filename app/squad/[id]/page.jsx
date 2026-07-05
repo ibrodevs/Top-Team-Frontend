@@ -40,7 +40,7 @@ export default function Page({ params }) {
                 ) : (
                   <>
                     <img
-                      src="/logo.jpg"
+                      src="/logo.png"
                       alt=""
                       className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 object-contain opacity-25"
                     />

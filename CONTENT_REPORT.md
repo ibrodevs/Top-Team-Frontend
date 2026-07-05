@@ -82,7 +82,7 @@
 
 | Файл | Источник (YouTube) | Где используется |
 |---|---|---|
-| `hero-astana-arena-2023.jpg` | кадр из влога skIRfMWu1fU (2DROTS, «Астана Арена») | Hero главной |
+| `Hero.png` | кадр из влога skIRfMWu1fU (2DROTS, «Астана Арена») | Hero главной |
 | `goal-celebration-2025.jpg` | кадр из видео N1uJbl4SyT0 (Anadolu) | Блок цитаты, карточка Reels |
 | `team-emotions-2025.jpg` | кадр из видео N1uJbl4SyT0 | Обложка новости о медиа-форматах |
 | `mfl-kg-final-2023-topteam-djo.jpg` | превью yETPuw65gJQ (полный финал MFL KG) | Новость о титуле, медиа-карточка |

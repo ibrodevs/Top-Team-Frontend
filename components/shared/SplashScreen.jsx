@@ -56,7 +56,7 @@ export default function SplashScreen() {
             transition={{ duration: 0.4, ease: EASE }}
           >
             <motion.img
-              src="/logo.jpg"
+              src="/logo.png"
               alt=""
               className="h-20 w-20 object-contain md:h-24 md:w-24"
               initial={reduceMotion ? { opacity: 0 } : { scale: 0.5, opacity: 0 }}

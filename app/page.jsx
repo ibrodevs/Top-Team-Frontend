@@ -31,7 +31,7 @@ import {
 
 // Реальные кадры клуба: матч Top Team на «Астана Арене» (1XBET MFL, 2023)
 // и празднование гола в матче с Anadolu (2025). Источник: YouTube @topteamkg.
-const heroImage = "/media/hero-astana-arena-2023.jpg";
+const heroImage = "/media/Hero.png";
 const quoteImage = "/media/goal-celebration-2025.jpg";
 
 const pillarIcons = { trophy: Trophy, play: Play, users: Users, flame: Flame };

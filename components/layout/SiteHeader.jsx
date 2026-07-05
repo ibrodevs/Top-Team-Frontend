@@ -11,7 +11,7 @@ function Logo({ compact = false }) {
   return (
     <Link href="/" className="group flex items-center gap-2.5" aria-label="Top Team KG — на главную">
       <img
-        src="/logo.jpg"
+        src="/logo.png"
         alt=""
         className={`object-contain transition-all duration-500 ${compact ? "h-8 w-8" : "h-9 w-9 md:h-10 md:w-10"}`}
       />
