@@ -18,7 +18,7 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Top Team KG" className="h-12 w-12 object-contain" />
+              <img src="/logo.jpg" alt="Top Team KG" className="h-12 w-12 object-contain" />
               <span className="flex flex-col leading-none">
                 <span className="font-display text-3xl font-bold text-white">
                   TOP<span className="text-electric">TEAM</span>

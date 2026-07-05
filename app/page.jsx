@@ -29,8 +29,10 @@ import {
   socialLinks,
 } from "../data/siteData";
 
-const heroImage = "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1920&q=80&auto=format&fit=crop";
-const quoteImage = "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1920&q=80&auto=format&fit=crop";
+// Реальные кадры клуба: матч Top Team на «Астана Арене» (1XBET MFL, 2023)
+// и празднование гола в матче с Anadolu (2025). Источник: YouTube @topteamkg.
+const heroImage = "/media/hero-astana-arena-2023.jpg";
+const quoteImage = "/media/goal-celebration-2025.jpg";
 
 const pillarIcons = { trophy: Trophy, play: Play, users: Users, flame: Flame };
 
@@ -56,7 +58,7 @@ export default function Page() {
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
           <motion.img
             src={heroImage}
-            alt="Top Team KG — стадион"
+            alt="Top Team KG на матче 1XBET Media Football League на «Астана Арене»"
             className="h-full w-full object-cover"
             initial={{ scale: 1, opacity: 0 }}
             animate={{ scale: reduceMotion ? 1 : 1.08, opacity: 1 }}
@@ -214,7 +216,7 @@ export default function Page() {
       {/* ============ ЦИТАТА ============ */}
       <section className="relative h-[70vh] min-h-[480px] overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: quoteY, scale: quoteScale }}>
-          <img src={quoteImage} alt="Атмосфера Top Team KG" className="h-full w-full object-cover" />
+          <img src={quoteImage} alt="Игроки Top Team KG празднуют гол" className="h-full w-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-navy-950/70" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950/60" />

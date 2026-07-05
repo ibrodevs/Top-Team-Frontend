@@ -45,9 +45,11 @@ export default function PlayerCard({ player, index = 0 }) {
             ) : (
               <PlayerSilhouette className="absolute inset-x-0 bottom-0 mx-auto h-[85%] w-auto transition-transform duration-700 group-hover:scale-105" />
             )}
-            <span className="pointer-events-none absolute -right-2 top-2 font-display text-[7rem] font-bold leading-none text-white/[0.07] transition-colors duration-500 group-hover:text-electric/15 md:text-[8.5rem]">
-              {player.number}
-            </span>
+            {player.number != null && (
+              <span className="pointer-events-none absolute -right-2 top-2 font-display text-[7rem] font-bold leading-none text-white/[0.07] transition-colors duration-500 group-hover:text-electric/15 md:text-[8.5rem]">
+                {player.number}
+              </span>
+            )}
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-navy-850 to-transparent" />
             <span className="absolute left-4 top-4 rounded-full border border-electric/25 bg-navy-900/70 px-3 py-1 font-heading text-[10px] uppercase tracking-[0.2em] text-electric backdrop-blur-sm">
               {player.position_label}
@@ -59,9 +61,11 @@ export default function PlayerCard({ player, index = 0 }) {
               <h3 className="font-display text-2xl font-semibold uppercase leading-none text-white transition-colors group-hover:text-electric">
                 {player.name}
               </h3>
-              <span className="gradient-text shrink-0 font-display text-3xl font-bold leading-none">
-                {player.number}
-              </span>
+              {player.number != null && (
+                <span className="gradient-text shrink-0 font-display text-3xl font-bold leading-none">
+                  {player.number}
+                </span>
+              )}
             </div>
             <p className="mt-3 text-sm leading-relaxed text-ash">{player.role}</p>
 

@@ -1,4 +1,4 @@
-// File: /Users/imac5/Desktop/projects/Top-Team-Frontend/app/layout.jsx
+// File: /Users/imac5/Desktop/projects/Top Team/Top-Team-Frontend/app/layout.jsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

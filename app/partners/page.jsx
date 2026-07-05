@@ -8,7 +8,7 @@ import Button from "../../components/ui/Button";
 import Container from "../../components/ui/Container";
 import PageHero from "../../components/ui/PageHero";
 import SectionHeader from "../../components/ui/SectionHeader";
-import { partnerBenefits, partnerFormats, partnerSlots } from "../../data/siteData";
+import { partnerBenefits, partnerFormats } from "../../data/siteData";
 
 const formatIcons = {
   shirt: Shirt,
@@ -89,25 +89,26 @@ export default function Page() {
         </Container>
       </section>
 
-      {/* Слоты логотипов */}
+      {/* Партнерская программа */}
       <section className="border-t border-electric/10 bg-navy-900 py-16 md:py-20">
         <Container>
-          <SectionHeader
-            eyebrow="Партнеры клуба"
-            title="Здесь может быть ваш бренд"
-          />
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
-            {partnerSlots.map((slot, index) => (
-              <Reveal key={`${slot.title}-${index}`} delay={index * 0.06}>
-                <div className="glass-card flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-2xl border-dashed transition-all duration-500 hover:shadow-glow">
-                  <span className="font-display text-lg font-semibold uppercase text-white/35">{slot.title}</span>
-                  <span className="font-heading text-[10px] uppercase tracking-[0.2em] text-electric/60">
-                    {slot.status}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <div className="animated-border rounded-3xl p-8 text-center md:p-14">
+              <span className="font-heading text-xs uppercase tracking-[0.3em] text-electric">
+                Партнеры клуба
+              </span>
+              <h2 className="text-display mx-auto mt-4 max-w-3xl text-3xl uppercase text-white md:text-5xl">
+                Партнерская программа открыта
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-ash md:text-base">
+                Клуб формирует пул партнеров нового сезона. Станьте брендом, который будет
+                рядом с командой на форме, в матчах и в контенте — от первого дня сотрудничества.
+              </p>
+              <div className="mt-8 flex justify-center">
+                <Button href="#partner-form">Обсудить партнерство</Button>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </section>
 

@@ -20,9 +20,11 @@ export default function Page({ params }) {
       {/* Шапка игрока */}
       <section className="grain-overlay relative overflow-hidden border-b border-electric/10 bg-navy-950 pb-14 pt-28 md:pb-20 md:pt-40">
         <div className="stadium-glow pointer-events-none absolute inset-x-0 top-0 h-full" />
-        <span className="pointer-events-none absolute -right-8 top-1/2 -translate-y-1/2 select-none font-display text-[16rem] font-bold leading-none text-electric/5 md:text-[26rem]">
-          {player.number}
-        </span>
+        {player.number != null && (
+          <span className="pointer-events-none absolute -right-8 top-1/2 -translate-y-1/2 select-none font-display text-[16rem] font-bold leading-none text-electric/5 md:text-[26rem]">
+            {player.number}
+          </span>
+        )}
         <Container className="relative">
           <Link
             href="/squad"
@@ -38,13 +40,15 @@ export default function Page({ params }) {
                 ) : (
                   <>
                     <img
-                      src="/logo.png"
+                      src="/logo.jpg"
                       alt=""
                       className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 object-contain opacity-25"
                     />
-                    <span className="absolute bottom-4 right-6 font-display text-8xl font-bold text-white/10">
-                      {player.number}
-                    </span>
+                    {player.number != null && (
+                      <span className="absolute bottom-4 right-6 font-display text-8xl font-bold text-white/10">
+                        {player.number}
+                      </span>
+                    )}
                   </>
                 )}
                 <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy-950 to-transparent" />
@@ -60,18 +64,22 @@ export default function Page({ params }) {
               </Reveal>
               <Reveal delay={0.2}>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <div className="glass-card flex items-center gap-2.5 rounded-full px-5 py-2.5">
-                    <Hash size={14} className="text-electric" />
-                    <span className="text-sm font-medium text-white">Номер {player.number}</span>
-                  </div>
+                  {player.number != null && (
+                    <div className="glass-card flex items-center gap-2.5 rounded-full px-5 py-2.5">
+                      <Hash size={14} className="text-electric" />
+                      <span className="text-sm font-medium text-white">Номер {player.number}</span>
+                    </div>
+                  )}
                   <div className="glass-card flex items-center gap-2.5 rounded-full px-5 py-2.5">
                     <Shirt size={14} className="text-electric" />
                     <span className="text-sm font-medium text-white">{player.position_label}</span>
                   </div>
-                  <div className="glass-card flex items-center gap-2.5 rounded-full px-5 py-2.5">
-                    <Flag size={14} className="text-electric" />
-                    <span className="text-sm font-medium text-white">{player.nationality}</span>
-                  </div>
+                  {player.nationality && (
+                    <div className="glass-card flex items-center gap-2.5 rounded-full px-5 py-2.5">
+                      <Flag size={14} className="text-electric" />
+                      <span className="text-sm font-medium text-white">{player.nationality}</span>
+                    </div>
+                  )}
                 </div>
               </Reveal>
             </div>

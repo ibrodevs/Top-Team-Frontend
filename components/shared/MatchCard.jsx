@@ -24,7 +24,7 @@ function TeamCrest({ name, isTopTeam }) {
         }`}
       >
         {isTopTeam ? (
-          <img src="/logo.png" alt="Top Team KG" className="h-9 w-9 object-contain md:h-10 md:w-10" />
+          <img src="/logo.jpg" alt="Top Team KG" className="h-9 w-9 object-contain md:h-10 md:w-10" />
         ) : (
           <span className="font-display text-xl font-bold text-white/70 md:text-2xl">
             {name.charAt(0)}

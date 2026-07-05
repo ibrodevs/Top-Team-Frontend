@@ -13,7 +13,7 @@ export default function Page() {
             <SplitTitle text="Live Center вынесен в будущую версию" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,6rem)] text-white" />
             <Reveal delay={0.2}>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-ash">
-                В документе этот функционал не входит в приоритет первой версии. Сначала важно запустить реальные разделы: состав, матчи, новости, медиа, партнеры и контакты.
+                Прямые трансляции появятся на следующем этапе развития платформы. Сейчас все матчи и видео клуба доступны на YouTube-канале Top Team KG и в Instagram.
               </p>
             </Reveal>
             <Reveal delay={0.3}>

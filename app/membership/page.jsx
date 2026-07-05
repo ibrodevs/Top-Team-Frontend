@@ -13,7 +13,7 @@ export default function Page() {
             <SplitTitle text="Членство клуба пока не входит в первую версию" as="h1" className="text-display mt-3 text-[clamp(2.5rem,8vw,6rem)] text-white" />
             <Reveal delay={0.2}>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-ash">
-                В текущем документе членство указано как опциональный сценарий на будущее. Сейчас важнее сфокусироваться на контенте, который подтверждает бренд клуба и помогает болельщикам, медиа и партнерам.
+                Программа членства для болельщиков — в планах клуба на будущее. Уже сейчас можно быть ближе к команде: подписывайтесь на Instagram и YouTube Top Team KG.
               </p>
             </Reveal>
             <Reveal delay={0.3}>
